@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Masala Chai</title>
+  <style>
+     #n1 {
+      background-color: rgba(235, 233, 211, 0.9);
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+
+      position: fixed;
+      top:0;
+      left:0;
+      right: 0;
+      z-index: 1000;
+    }
+
+    nav a ,.about-label{
+      color: black;
+      font-size: 18px;
+      margin-left: 40px;
+      text-decoration: none;
+      cursor: pointer;
+      position: relative;
+      font-weight: bold;
+      transition: color 0.3s;
+      
+    }
+
+    nav a:hover {
+      color: #634b1f;
+    }
+    .dropdown{
+
+position: relative;
+display : inline-block;
+}
+.dropdown-content{
+    display:none;
+    position: absolute;
+    background-color: #fff9e6;
+    min-width: 180px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    z-index: 10;
+    margin-top: 5px;
+
+}
+.dropdown-content a{
+color: #5a3c0b;
+padding: 10px 16px ;
+text-decoration: none;
+display: block;
+}
+.dropdown-content a:hover{
+background-color: #f0e0b3;
+}
+.dropdown:hover .dropdown-content{
+display: block; 
+}
+#toggle:checked+.about-label+.dropdown-content{
+
+    display: block;
+}
+.social-icons {
+      margin-top: 10px;
+    }
+
+    .social-icons img {
+      height: 35px;
+      width: 35px;
+      margin: 5px;
+      border-radius: 5px;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .social-icons img:hover {
+      transform: scale(1.1);
+    }
+
+    body {
+      background-image: url("ChaiAbout.png");
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      color: #2e2e2e;
+      font-family: 'Georgia', serif;
+      margin: 0;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 3em;
+      color: #4b2e0e;
+    }
+
+    section {
+      background: rgba(255, 255, 255, 0.6);
+      padding: 30px;
+      max-width: 800px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      margin-top: 20px;
+    }
+
+    h3 {
+      color: #7a3e00;
+      margin-top: 20px;
+    }
+
+    p {
+      line-height: 1.7;
+      font-size: 1.1em;
+      text-align: justify;
+    }
+    .footer-bottom {
+      text-align: center;
+      background-color: rgba(53, 38, 15, 0.95);
+      color: #ccc;
+      padding: 20px;
+      font-size: 14px;
+      width: 100%;}
+  </style>
+</head>
+<body>
+  <header id="n1">
+    <nav>
+      <a href="Second.html">Home</a>
+      <div class="dropdown">
+        <input type="checkbox" id="toggle" hidden>
+        <label id="toggle" class="about label"><a href="#About Us">About Us</a></label>
+      <!--<a href="#">About Us</a>-->
+      <div class="dropdown-content">
+        <a href="AboutUS.html">Our Story</a>
+        <a href="#Why-Us">Why-Us</a>
+        <a href="#Founders">Founders</a>
+        <a href="#Vision">vision</a>
+      </div>
+    </div>
+    <div class="dropdown">
+        <input type="checkbox" id="toggle" hidden>
+        <label id="toggle" class="about label"><a href="#Order">Order</a></label>
+      <!--<a href="#">About Us</a>-->
+      <div class="dropdown-content">
+        <a href="Menu.html">Tea</a>
+        <a href="#Other Beverage ">Other Beverage</a>
+        <a href="#Tea accompaniments">Tea accompaniments</a>
+     
+      </div>
+    </div>
+      <a href="Registeration.html">Login</a>
+     
+    </nav>
+  </header>
+  <h1>ABOUT US</h1>
+
+  <section>
+    <h3>What Is Indian Masala Chai?</h3>
+    <p>
+      Anyone who at least once tries this amazing tea flavored with a bouquet of spices will forever remember its delicious taste, unsurpassed aroma, and amazing invigorating effect. The name “masala” is translated as “a mixture of spices”.
+    </p>
+    <p>
+      The drink is mainly prepared on the basis of Assam black tea. This component got into the recipe after the British founded a tea plantation in Assam.
+    </p>
+    <p>
+      For the first time, the benefits of Indian masala tea with the addition of milk and spices were appreciated by slaves. The miraculous liquid not only effectively quenched thirst, but also gave a surge of vitality, and energy, and contributed to an increase in working capacity and endurance.
+    </p>
+    
+    <h3>Masala Chai Ingredients</h3>
+    <p>
+      The classic masala chai recipe consists of five main ingredients:
+      <ul>
+        <li>Black leaf tea</li>
+        <li>Milk</li>
+        <li>Spices</li>
+        <li>Sweetener</li>
+        <li>Drinking water</li>
+      </ul>
+      But you can let your imagination run wild and create your own variation!
+    </p>
+
+    <h3>Tea</h3>
+    <p>
+      Preference should be given to large-leaf Assam black tea known for its rich taste and spicy-floral aroma. However, there are many variations — even green tea-based versions like Kahwa in Kashmir.
+    </p>
+
+    <h3>Milk</h3>
+    <p>
+      Originally made with buffalo milk, masala chai is now widely prepared with cow's milk or alternatives like almond, coconut, or soy milk. Some even use condensed milk or ice cream for exotic versions.
+    </p>
+
+    <h3>Spices</h3>
+    <p>
+      A classic mix includes green cardamom, black pepper, star anise, cinnamon sticks, and cloves. Ginger and cardamom are essential, while exotic options range from saffron and rose petals to bay leaves and pine nuts.
+    </p>
+ </section>
+ <footer class="custom-footer">
+  <div class="footer-column">
+    <h2>CHARITRAWAN CHAI</h2>
+    <p>For Enquiry: business@charitrawanchai.in</p>
+    <p>For Franchise: franchise@charitrawanchai.in</p>
+    <p>Support: info@charitrawanchai.in</p>
+  </div>
+
+  <div class="footer-column">
+    <h3>Opening Hours</h3>
+    <p>Mon - Sun: 10:00 AM - 6:00 PM</p>
+    <h3>Social Links</h3>
+    <div class="social-icons">
+      <a href="#"><img src="face.jpg" alt="Facebook"></a>
+      <a href="#"><img src="InstaGram.jpg" alt="Instagram"></a>
+      <a href="#"><img src="LinkedIn.jpg" alt="LinkedIn"></a>
+      <a href="#"><img src="Gmail.jpg" alt="Gmail"></a>
+      <a href="#"><img src="Whats.jpg" alt="WhatsApp"></a>
+    </div>
+  </div>
+
+  <div class="footer-column">
+    <h3>Address</h3>
+    <p>Head Office- 123, Tea Street, Indore, MP</p>
+    <p>Outlet: Near Vijay Nagar, Indore</p>
+    <p>Contact: 96695*****     98765***** </p>
+  </div>
+</footer>
+
+<div class="footer-bottom">
+  <p>© 2025 Charitrawan Chai. All rights reserved.</p>
+</div>
+</body>
+</html>

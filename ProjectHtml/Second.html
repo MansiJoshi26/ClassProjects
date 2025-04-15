@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Charitrawan Chai</title>
+  <style>
+    
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: url("BackGround.png") no-repeat fixed center/cover;
+      margin-top: 10%;
+      background-attachment: fixed;
+    }
+
+    
+    #n1 {
+      background-color: rgba(235, 233, 211, 0.9);
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+
+      position: fixed;
+      right: 0;
+      left:0;
+      top:0;
+      z-index: 1000;
+    }
+
+    nav a ,.about-label{
+      color: black;
+      font-size: 18px;
+      margin-left: 40px;
+      text-decoration: none;
+      cursor: pointer;
+      position: relative;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #634b1f;
+    }
+
+    .mega-heading {
+      text-align: center;
+      font-size: 4rem;
+      font-weight: 800;
+      font-family: cursive;
+      font-style: italic;
+      color: rgb(85, 63, 21);
+      margin-top: 40px;
+    }
+
+    
+    .slider-container {
+      width: 100%;
+      overflow: hidden;
+      margin-top: 40px;
+      position: relative;
+    }
+
+    .slider {
+      display: flex;
+      animation: slide 15s infinite linear;
+    }
+
+    .slide {
+      position: relative;
+      margin: 0 30px;
+    }
+
+    .slide img {
+      height: 300px;
+      width: 300px;
+      object-fit: cover;
+      border-radius: 10%;
+      display: block;
+    }
+
+    .overlay {
+      position: absolute;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 10px 20px;
+      border-radius: 10px;
+      text-align: center;
+      color: white;
+    }
+
+    .overlay h3,
+    .overlay .price {
+      margin: 5px 0;
+      font-size: 18px;
+      color: #ebe9e2;
+    }
+
+    .overlay .price {
+      color: #ffe082;
+      font-family: Cambria, serif;
+    }
+
+    @keyframes slide {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+
+   
+    #city {
+      text-align: center;
+      background-color: #331d0367;
+      padding: 20px 20px;
+      color: #eedb9e;
+    }
+
+    #city select {
+      padding: 10px 20px;
+      border-radius: 8px;
+      margin: 10px;
+      font-size: 16px;
+      background-color: #3c260f;
+      color: #eedb9e;
+
+    }
+
+   
+    .Content-container {
+      padding: 0 60px;
+      margin-bottom: 60px;
+    }
+
+    
+    .search-container {
+    display: flex;
+
+    align-items: left;
+    margin-left: 40px;
+    border-radius: 40%;
+}
+
+#search-bar {
+  padding: 8px 12px;
+  /*border: 2px solid #5a3c1c;*/
+  border-radius: 50%;
+
+ /* font-size: 20px;*/
+  /*background-color: #302a17;*/
+  /*color: #5a3c1c;*/
+  outline: none;
+
+
+}
+
+.search-container button {
+  /*padding: 8px 12px;*/
+  background-color: #b4a594;
+  
+  border-radius:20%;
+ /* color: rgb(128, 34, 34);*/
+  cursor: pointer;
+  font-size: 16px;
+  background-position: right;
+
+  transition: background-color 0.3s;
+
+}
+
+/*.search-container button:hover {
+  background-color: #3c260f;
+}*/
+
+    .read-more-text {
+      background-color: rgba(117, 82, 28, 0.75);
+      color: #ebe9e2;
+      border-radius: 12px;
+      padding: 25px;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      font-size: 18px;
+      line-height: 1.7;
+      position: relative;
+      text-align: justify;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .more-content {
+      display: none;
+    }
+
+    #read-more-toggle:checked + .read-more-text .more-content {
+      display: inline;
+    }
+
+    .read-more-label {
+      display: inline-block;
+      margin-left: 60px;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #5a3c1c;
+      color: #fff;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: Arial, sans-serif;
+      transition: background-color 0.3s;
+    }
+
+    .read-more-label:hover {
+      background-color: #3c260f;
+    }
+
+    #read-more-toggle:not(:checked) ~ .read-more-label::after {
+      content: "Read More";
+    }
+
+    #read-more-toggle:checked ~ .read-more-label::after {
+      content: "Read Less";
+    }
+    .dropdown{
+
+    position: relative;
+    display : inline-block;
+    }
+    .dropdown-content{
+        display:none;
+        position: absolute;
+        background-color: #fff9e6;
+        min-width: 180px;
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+        z-index: 10;
+        margin-top: 5px;
+        transition: 4 s;
+    }
+    .dropdown-content a{
+    color: #5a3c0b;
+    padding: 10px 16px ;
+    text-decoration: none;
+    display: block;
+    }
+    .dropdown-content a:hover{
+    background-color: #f0e0b3;
+    }
+    .dropdown:hover .dropdown-content{
+    display: block; 
+    }
+    #toggle:checked+.about-label+.dropdown-content{
+
+        display: block;
+    }
+    
+    .custom-footer {
+      display: flex;
+     /* flex-direction: row;*/
+      justify-content: space-between;
+      background-color: rgb(73, 52, 19);
+      padding: 0;
+      /*flex-wrap: wrap;*/
+    position: relative;
+    background-attachment: fixed;
+    }
+
+    .footer-column {
+      flex: 2;
+      padding: 20px;
+      color: white;
+      background-attachment: fixed;
+    }
+
+    .footer-column h2, .footer-column h3 {
+      color: #ffe7b3;
+      font-family: cursive;
+      margin-bottom: 15px;
+      background-attachment: fixed;
+    }
+
+    .footer-column p {
+      margin: 5px 0;
+    }
+
+    
+
+    .footer-bottom {
+      text-align: center;
+      background-color: rgba(53, 38, 15, 0.95);
+      color: #ccc;
+      padding: 20px;
+      font-size: 14px;
+      width: 100%;
+      background-attachment: fixed;
+    }
+
+    .social-icons {
+      margin-top: 10px;
+    }
+
+    .social-icons img {
+      height: 35px;
+      width: 35px;
+      margin: 5px;
+      border-radius: 5px;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .social-icons img:hover {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+
+  <header id="n1">
+    <nav>
+      <a href="Second.html">Home</a>
+      <div class="dropdown">
+        <input type="checkbox" id="toggle" hidden>
+        <label id="toggle" class="about label"><a href="#About Us">About Us</a></label>
+      <!--<a href="#">About Us</a>-->
+      <div class="dropdown-content">
+        <a href="AboutUS.html">Our Story</a>
+        <a href="#Why-Us">Why-Us</a>
+        <a href="#Founders">Founders</a>
+        <a href="#Vision">vision</a>
+      </div>
+    
+    </div>
+    
+    <div class="dropdown">
+        <input type="checkbox" id="toggle" hidden>
+        <label id="toggle" class="about label"><a href="#Order">Order</a></label>
+      <!--<a href="#">About Us</a>-->
+      <div class="dropdown-content">
+        <a href="Menu.html">Tea</a>
+        <a href="#Other Beverage ">Other Beverage</a>
+        <a href="#Tea accompaniments">Tea accompaniments</a>
+     
+      </div>
+    </div>
+      <a href="Registeration.html">Login</a>
+     
+    </nav>
+    <div class="search-container">
+      <input type="text" placeholder="Search Chai...." id="Search-bar">
+      <button onclick="performSearcg()">🔍</button>
+
+    </div>
+  </header>
+
+  <h1 class="mega-heading">CHARITRAWAN CHAI</h1>
+
+  <div class="slider-container">
+    <div class="slider" id="slider">
+      <div class="slide">
+        <img src="Masala.jpg" alt="Masala Chai">
+        <div class="overlay">
+          <a href="AMasala.html"><h3>Masala Chai</h3></a>
+          <p class="price">₹15/-</p>
+        </div>
+      </div>
+      <div class="slide">
+        <img src="AdrakChai.jpg" alt="Adrak Chai">
+        <div class="overlay">
+          <a href="AAdrak.html"><h3>Adrak Chai</h3></a>
+          <p class="price">₹20/-</p>
+        </div>
+      </div>
+      <div class="slide">
+        <img src="KashmiriTea.webp" alt="Kashmiri Chai">
+        <div class="overlay">
+          <h3>Kashmiri Chai</h3>
+          <p class="price">₹25/-</p>
+        </div>
+      </div>
+      <div class="slide">
+        <img src="IceTea.jpg" alt="Masala Chai">
+        <div class="overlay">
+          <h3>Ice Chai</h3>
+          <p class="price">₹25/-</p>
+        </div>
+      </div>
+      <div class="slide">
+        <img src="Chailatte.jpeg" alt="Masala Chai">
+        <div class="overlay">
+          <h3>Chailatte</h3>
+          <p class="price">₹35/-</p>
+        </div>
+      </div>
+      <div class="slide">
+        <img src="Elaichi.jpg" alt="Masala Chai">
+        <div class="overlay">
+          <h3>Elaichi Chai</h3>
+          <p class="price">₹15/-</p>
+        </div>
+      </div>
+      <div class="slide">
+        <img src="Hydr.jpg" alt="Masala Chai">
+        <div class="overlay">
+          <a href="AAdrak.html"><h3>Irani Chai</h3></a>
+          <p class="price">₹30/-</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="city">
+    <h2>FIND OUR CHARITRAWAN STORES</h2>
+    <h4>States</h4>
+    <select>
+      <option>Odisha</option>
+      <option selected>Madhya Pradesh</option>
+      <option>Delhi</option>
+      <option>Assam</option>
+      <option>Tamil Nadu</option>
+      <option>Goa</option>
+      <option>Rajasthan</option>
+      <option>West Bengal</option>
+      <option>Gujarat</option>
+      <option>UK</option>
+      <option>Maharashtra</option>
+      <option>Punjab</option>
+      <option>Himachal Pradesh</option>
+      <option>Chandigarh</option>
+    </select>
+    <h4>City</h4>
+    <select>
+      <option>Bhumneshwar</option>
+      <option selected>Indore</option>
+      <option>Delhi</option>
+      <option>Dispur</option>
+      <option>Chennai</option>
+      <option>panchi</option>
+      <option>Jaipur</option>
+      <option>Tripura</option>
+      <option>Gandhi Nagar</option>
+      <option>Gurgao</option>
+      <option>Mumbai</option>
+      <option>Chandigarh</option>
+      <option>Bhopal</option>
+      <option>Dewas</option>
+    </select>
+  </div>
+
+  <div class="Content-container">
+    <input type="checkbox" id="read-more-toggle" hidden>
+    <p class="read-more-text">
+      Charitrawan Chai is not just a beverage; it's an experience. 
+      From the streets of Indore to your soul, our blends capture the aroma of tradition and the essence of taste. 
+      Every sip tells a story of culture, comfort, and community.
+      Our journey started with a simple idea — to bring authentic chai to every chai lover's heart. 
+      With varieties like Masala Chai, Adrak Chai, and the exotic Kashmiri Chai, we promise a cup for every mood.
+      Visit us and taste the heritage steeped in every drop!  
+      Here is a story about chai!!!!!
+      
+      
+      <span class="more-content">
+        
+
+
+
+**The Tale of the Chaiwala and the King's Cup**
+
+Once upon a time in India, there was a humble chaiwala (tea seller) named Raghav. He lived in a small village nestled between the hills, and his chai was renowned far and wide. People said there was something magical about his tea — it made people feel at peace and gave them energy for the day ahead.
+
+One day, the king of a neighboring kingdom visited the village incognito. He was tired from a long journey and, as fate would have it, stumbled upon Raghav’s little tea stall. The sweet aroma of his brew filled the air, and the king decided to stop for a cup of tea, not knowing that it was the famous chaiwala's stall.
+
+Raghav, not recognizing the king, served him a steaming cup of chai with a smile. As the king took his first sip, a sense of warmth and calm washed over him. He’d never tasted anything like it before. "What’s the secret behind your tea, my friend?" the king asked, his voice full of curiosity.
+
+Raghav chuckled, "It’s no secret, my lord. Just a blend of spices, love, and patience."
+
+The king, intrigued, asked if he could take the recipe for the royal court. Raghav nodded, but there was a twinkle in his eyes. "The recipe is simple, but its true magic comes from the heart. If you wish to serve it to your court, you must serve it with the same spirit — a spirit of hospitality and care."
+
+Impressed with his words, the king decided to reward Raghav. He invited him to his palace, and Raghav agreed to serve the royal court his tea. But when Raghav arrived, he was shocked to see the palace was filled with lavish decorations, servants rushing around, and an air of tension.
+
+Raghav prepared the tea, as he had done for years, but he noticed that everyone in the royal court was too busy or distracted to appreciate it. The king himself was too focused on state matters to enjoy the tea properly.
+
+At that moment, Raghav realized that the magic of his chai wasn’t just in the spices or the ingredients, but in the way it was shared — with people who took the time to appreciate it, to connect with each other, and to slow down. He politely declined any reward and returned to his village.
+
+The next day, he served his tea in the same way he always had — with a smile, a listening ear, and a heart full of kindness. And soon, his little tea stall became the heart of the village, where people came not just for tea, but for the warmth of human connection.
+
+---
+
+This story reflects the true essence of tea — it’s not just a drink, but an experience that brings people together, whether it’s through a simple act of hospitality or a shared moment of peace. 🍵✨
+      
+      </span>
+    </p>
+
+    <div id="gallery">
+
+
+    </div>
+    <label for="read-more-toggle" class="read-more-label"></label>
+  </div>
+
+  <footer class="custom-footer">
+    <div class="footer-column">
+      <h2>CHARITRAWAN CHAI</h2>
+      <p>For Enquiry: business@charitrawanchai.in</p>
+      <p>For Franchise: franchise@charitrawanchai.in</p>
+      <p>Support: info@charitrawanchai.in</p>
+    </div>
+
+    <div class="footer-column">
+      <h3>Opening Hours</h3>
+      <p>Mon - Sun: 10:00 AM - 6:00 PM</p>
+      <h3>Social Links</h3>
+      <div class="social-icons">
+        <a href="#"><img src="face.jpg" alt="Facebook"></a>
+        <a href="#"><img src="InstaGram.jpg" alt="Instagram"></a>
+        <a href="#"><img src="LinkedIn.jpg" alt="LinkedIn"></a>
+        <a href="#"><img src="Gmail.jpg" alt="Gmail"></a>
+        <a href="#"><img src="Whats.jpg" alt="WhatsApp"></a>
+      </div>
+    </div>
+
+    <div class="footer-column">
+      <h3>Address</h3>
+      <p>Head Office- 123, Tea Street, Indore, MP</p>
+      <p>Outlet: Near Vijay Nagar, Indore</p>
+      <p>Contact: 966957777     987659999 </p>
+    </div>
+  </footer>
+
+  <div class="footer-bottom">
+    <p>© 2025 Charitrawan Chai. All rights reserved.</p>
+  </div>
+
+</body>
+</html>

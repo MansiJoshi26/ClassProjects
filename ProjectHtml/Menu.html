@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tea Menu</title>
+    <style>
+    #n1 {
+      background-color: rgba(235, 233, 211, 0.9);
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+
+      position: fixed;
+      top:0;
+      left:0;
+      right: 0;
+      z-index: 1000;
+    }
+
+    nav a ,.about-label{
+      color: black;
+      font-size: 18px;
+      margin-left: 40px;
+      text-decoration: none;
+      cursor: pointer;
+      position: relative;
+      font-weight: bold;
+      transition: color 0.3s;
+      
+    }
+
+    nav a:hover {
+      color: #634b1f;
+    }
+    .dropdown{
+
+position: relative;
+display : inline-block;
+}
+.dropdown-content{
+    display:none;
+    position: absolute;
+    background-color: #fff9e6;
+    min-width: 180px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    z-index: 10;
+    margin-top: 5px;
+
+}
+.dropdown-content a{
+color: #5a3c0b;
+padding: 10px 16px ;
+text-decoration: none;
+display: block;
+}
+.dropdown-content a:hover{
+background-color: #f0e0b3;
+}
+.dropdown:hover .dropdown-content{
+display: block; 
+}
+#toggle:checked+.about-label+.dropdown-content{
+
+    display: block;
+}
+.social-icons {
+      margin-top: 10px;
+    }
+
+    .social-icons img {
+      height: 35px;
+      width: 35px;
+      margin: 5px;
+      border-radius: 5px;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .social-icons img:hover {
+      transform: scale(1.1);
+    }
+
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url("Chai1.png");
+            background-size: cover;
+            background-position: center;
+            font-family: 'Georgia', serif;
+            color: #3e2c18;
+            background-attachment: scroll;
+            margin-top: 7%;
+        }
+
+        .menu-container {
+            background-color: rgba(255, 248, 240, 0.85);
+            display: flex;
+            flex-direction: left;
+            max-width: 500px;
+            margin: 50px auto;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3em;
+            margin-bottom: 30px;
+            color: #5e3a1b;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            background-color: #f3d4a0;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            font-size: 1.2em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+
+        li:hover {
+            background-color: #eac785;
+        }
+
+        .tea-name {
+            font-weight: bold;
+        }
+
+        .price {
+            font-style: italic;
+        }
+
+        /*@media (max-width: 600px) {
+            .menu-container {
+                margin: 20px;
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            li {
+                font-size: 1em;
+            }
+        }*/
+    .custom-footer {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      background-color: rgb(73, 52, 19);
+      padding: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-column {
+      flex: 2;
+      padding: 20px;
+      color: white;
+    }
+
+    .footer-column h2, .footer-column h3 {
+      color: #ffe7b3;
+      font-family: cursive;
+      margin-bottom: 15px;
+    }
+
+    .footer-column p {
+      margin: 5px 0;
+    }
+    .social-icons {
+      margin-top: 10px;
+    }
+
+    .social-icons img {
+      height: 35px;
+      width: 35px;
+      margin: 5px;
+      border-radius: 5px;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .social-icons img:hover {
+      transform: scale(1.1);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      background-color: rgba(53, 38, 15, 0.95);
+      color: #ccc;
+      padding: 20px;
+      font-size: 14px;
+      width: 100%;
+    }
+    </style>
+</head>
+<body>
+    <header id="n1">
+        <nav>
+          <a href="Second.html">Home</a>
+      
+          <div class="dropdown">
+            <input type="checkbox" id="about-toggle" hidden>
+            <label for="about-toggle" class="about-label">About Us</label>
+            <div class="dropdown-content">
+              <a href="AboutUS.html">Our Story</a>
+              <a href="#Why-Us">Why-Us</a>
+              <a href="#Founders">Founders</a>
+              <a href="#Vision">Vision</a>
+            </div>
+          </div>
+      
+          <div class="dropdown">
+            <input type="checkbox" id="order-toggle" hidden>
+            <label for="order-toggle" class="about-label">Order</label>
+            <div class="dropdown-content">
+              <a href="Menu.html">Tea</a>
+              <a href="#Other Beverage">Other Beverage</a>
+              <a href="#Tea accompaniments">Tea accompaniments</a>
+            </div>
+          </div>
+      
+          <a href="Registeration.html">Login</a>
+      
+         
+        
+        <div>
+           <!-- <input type="checkbox" id="order-toggle" hidden>-->
+            <label class="about-label">Gallery</label>
+          </div>
+        </nav>
+      </header>
+      
+    <div class="menu-container">
+        <h1>TEA MENU</h1>
+        <ul>
+            <li><span class="tea-name">Normal Tea</span> <span class="price">₹ 15 / 20</span></li>
+            <li><span class="tea-name">Adrak Tea</span> <span class="price">₹ 15 / 20</span></li>
+            <li><span class="tea-name">Chocolate Tea</span> <span class="price">₹ 15 / 20</span></li>
+            <li><span class="tea-name">Rose Tea</span> <span class="price">₹ 15 / 20</span></li>
+            <li><span class="tea-name">Paan Tea</span> <span class="price">₹ 15 / 20</span></li>
+            <li><span class="tea-name">Kesar Tea</span> <span class="price">₹ 15 / 20</span></li>
+            <li><span class="tea-name">Mango Tea</span> <span class="price">₹ 15 / 20</span></li>
+        </ul>
+    </div>
+    <footer class="custom-footer">
+        <div class="footer-column">
+          <h2>CHARITRAWAN CHAI</h2>
+          <p>For Enquiry: business@charitrawanchai.in</p>
+          <p>For Franchise: franchise@charitrawanchai.in</p>
+          <p>Support: info@charitrawanchai.in</p>
+        </div>
+    
+        <div class="footer-column">
+          <h3>Opening Hours</h3>
+          <p>Mon - Sun: 10:00 AM - 6:00 PM</p>
+          <h3>Social Links</h3>
+          <div class="social-icons">
+            <a href="#"><img src="face.jpg" alt="Facebook"></a>
+            <a href="#"><img src="InstaGram.jpg" alt="Instagram"></a>
+            <a href="#"><img src="LinkedIn.jpg" alt="LinkedIn"></a>
+            <a href="#"><img src="Gmail.jpg" alt="Gmail"></a>
+            <a href="#"><img src="Whats.jpg" alt="WhatsApp"></a>
+          </div>
+        </div>
+    
+        <div class="footer-column">
+          <h3>Address</h3>
+          <p>Head Office- 123, Tea Street, Indore, MP</p>
+          <p>Outlet: Near Vijay Nagar, Indore</p>
+          <p>Contact: 96695*****     98765***** </p>
+        </div>
+      </footer>
+</body>
+</html>
