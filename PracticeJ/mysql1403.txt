@@ -1,0 +1,50 @@
+mysql> use mj;
+Database changed
+mysql> create table department (id int unique,depart varchar(20) unique not null);
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> create table employee2000(eid int unique ,name varchar(20)  not null ,salary int not null ,did int foreign key(did) reference department(id)
+);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'foreign key(did) reference department(id) )' at line 1
+mysql> create table employee2000(eid int unique ,name varchar(20)  not null ,salary int not null ,did int, foreign key(did) reference department(id)
+ );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'reference department(id) )' at line 1
+mysql> create table employee2000(eid int unique ,name varchar(20)  not null ,salary int not null ,did int, foreign key(did) references department(id
+));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> insert into department(id,depart) values(101,'mansi');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into department(id,depart) values(102,'mj');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> update department set depart='IT' where depart ='mansi';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update department set depart='cs' where depart ='mj';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> insert into department(id,depart) values(103,'ai');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee2000(eid,name,salary,did) values(1,'mansi',70000,102);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee2000(eid,name,salary,did) values(1,'mj',80000,102);
+ERROR 1062 (23000): Duplicate entry '1' for key 'employee2000.eid'
+mysql> insert into employee2000(eid,name,salary,did) values(2,'mj',80000,102);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee2000(eid,name,salary,did) values(3,'madhvi',75000,103);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee2000(eid,name,salary,did) values(4,'dhruv',95000,104);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`mj`.`employee2000`, CONSTRAINT `employee2000_ibfk_1` FOREIGN KEY (`did`) REFERENCES `department` (`id`))
+mysql> insert into employee2000(eid,name,salary,did) values(4,'dhruv',95000,101);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee2000(eid,name,salary,did) values(5,'deva',90000,101);
+Query OK, 1 row affected (0.01 sec)

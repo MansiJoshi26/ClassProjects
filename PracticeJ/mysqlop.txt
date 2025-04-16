@@ -1,0 +1,898 @@
+mysql> desc op;
++--------+--------------+------+-----+---------+----------------+
+| Field  | Type         | Null | Key | Default | Extra          |
++--------+--------------+------+-----+---------+----------------+
+| id     | int          | NO   | PRI | NULL    | auto_increment |
+| name   | varchar(50)  | YES  |     | NULL    |                |
+| depart | varchar(100) | YES  |     | NULL    |                |
+| email  | varchar(100) | YES  |     | NULL    |                |
+| phone  | varchar(10)  | YES  |     | NULL    |                |
++--------+--------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> insert into op (name,depart,email,phone) values('deepti',' tech','dr@gmail.com','987777123');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into op (name,depart,email,phone) values('mj',' ec','mj@gmail.com','9877771
+77');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into op (name,depart,email,phone) values('aabbb',' info tech','ab@gmail.com
+','987777987');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into op (name,depart,email,phone) values('lalit',' info tech','l@gmail.com'
+,'987123123');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into op (name,depart,email,phone) values('anshika','cs','aa@gmail.com','987
+123000');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into op (name,depart,email,phone) values('mansi','ca','mj@gmail.com','98712
+123');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into op (name,depart,email,phone) values('vanshika','maths','vr@gmail.com',
+'987120123');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into op (name,depart,email,phone) values('jatin','non tech','baba@gmail.com
+','2611255');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into op (name,depart,email,phone) values('yogi','mech','yuj@gmail.com','982
+611255');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into op (name,depart,email,phone) values('aayuu','aiml','ayuj@gmail.com','9
+82611257');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert*from op;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*from op' at line 1
+mysql> select*from op;
++-----+----------+------------+----------------+-----------+
+| id  | name     | depart     | email          | phone     |
++-----+----------+------------+----------------+-----------+
+| 102 | deepti   |  tech      | dr@gmail.com   | 987777123 |
+| 103 | mj       |  ec        | mj@gmail.com   | 987777177 |
+| 104 | aabbb    |  info tech | ab@gmail.com   | 987777987 |
+| 105 | lalit    |  info tech | l@gmail.com    | 987123123 |
+| 106 | anshika  | cs         | aa@gmail.com   | 987123000 |
+| 107 | mansi    | ca         | mj@gmail.com   | 98712123  |
+| 108 | vanshika | maths      | vr@gmail.com   | 987120123 |
+| 109 | jatin    | non tech   | baba@gmail.com | 2611255   |
+| 110 | yogi     | mech       | yuj@gmail.com  | 982611255 |
+| 111 | aayuu    | aiml       | ayuj@gmail.com | 982611257 |
++-----+----------+------------+----------------+-----------+
+10 rows in set (0.00 sec)
+
+mysql> select *from op where like name=a%;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'like name=a%' at line 1
+mysql> select *from op where name like 'a%';
++-----+---------+------------+----------------+-----------+
+| id  | name    | depart     | email          | phone     |
++-----+---------+------------+----------------+-----------+
+| 104 | aabbb   |  info tech | ab@gmail.com   | 987777987 |
+| 106 | anshika | cs         | aa@gmail.com   | 987123000 |
+| 111 | aayuu   | aiml       | ayuj@gmail.com | 982611257 |
++-----+---------+------------+----------------+-----------+
+3 rows in set (0.01 sec)
+
+mysql> select *from op where email like 'gmail';
+Empty set (0.00 sec)
+
+mysql> select *from op where email like '%gmail%';
++-----+----------+------------+----------------+-----------+
+| id  | name     | depart     | email          | phone     |
++-----+----------+------------+----------------+-----------+
+| 102 | deepti   |  tech      | dr@gmail.com   | 987777123 |
+| 103 | mj       |  ec        | mj@gmail.com   | 987777177 |
+| 104 | aabbb    |  info tech | ab@gmail.com   | 987777987 |
+| 105 | lalit    |  info tech | l@gmail.com    | 987123123 |
+| 106 | anshika  | cs         | aa@gmail.com   | 987123000 |
+| 107 | mansi    | ca         | mj@gmail.com   | 98712123  |
+| 108 | vanshika | maths      | vr@gmail.com   | 987120123 |
+| 109 | jatin    | non tech   | baba@gmail.com | 2611255   |
+| 110 | yogi     | mech       | yuj@gmail.com  | 982611255 |
+| 111 | aayuu    | aiml       | ayuj@gmail.com | 982611257 |
++-----+----------+------------+----------------+-----------+
+10 rows in set (0.00 sec)
+
+mysql> select *from op where phone like '%123%';
++-----+----------+------------+--------------+-----------+
+| id  | name     | depart     | email        | phone     |
++-----+----------+------------+--------------+-----------+
+| 102 | deepti   |  tech      | dr@gmail.com | 987777123 |
+| 105 | lalit    |  info tech | l@gmail.com  | 987123123 |
+| 106 | anshika  | cs         | aa@gmail.com | 987123000 |
+| 107 | mansi    | ca         | mj@gmail.com | 98712123  |
+| 108 | vanshika | maths      | vr@gmail.com | 987120123 |
++-----+----------+------------+--------------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> select *from op where phone like '%123';
++-----+----------+------------+--------------+-----------+
+| id  | name     | depart     | email        | phone     |
++-----+----------+------------+--------------+-----------+
+| 102 | deepti   |  tech      | dr@gmail.com | 987777123 |
+| 105 | lalit    |  info tech | l@gmail.com  | 987123123 |
+| 107 | mansi    | ca         | mj@gmail.com | 98712123  |
+| 108 | vanshika | maths      | vr@gmail.com | 987120123 |
++-----+----------+------------+--------------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> select *from op where depart like '%tech%';
++-----+--------+------------+----------------+-----------+
+| id  | name   | depart     | email          | phone     |
++-----+--------+------------+----------------+-----------+
+| 102 | deepti |  tech      | dr@gmail.com   | 987777123 |
+| 104 | aabbb  |  info tech | ab@gmail.com   | 987777987 |
+| 105 | lalit  |  info tech | l@gmail.com    | 987123123 |
+| 109 | jatin  | non tech   | baba@gmail.com | 2611255   |
++-----+--------+------------+----------------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> select count(*)from op where length(name)=5 ;
++----------+
+| count(*) |
++----------+
+|        5 |
++----------+
+1 row in set (0.01 sec)
+
+mysql> select name from op where char_length(name)=5 ;
++-------+
+| name  |
++-------+
+| aabbb |
+| lalit |
+| mansi |
+| jatin |
+| aayuu |
++-------+
+5 rows in set (0.00 sec)
+
+mysql> select name from op where substring('n',2,1) ;
+Empty set (0.01 sec)
+
+mysql> select name from op where substring(name,2,1)='n' ;
++---------+
+| name    |
++---------+
+| anshika |
++---------+
+1 row in set (0.01 sec)
+
+mysql> insert into op (name,depart,email,phone)values('joshi','it','@yahooo','98777777');
+
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from op where phone like '%777'  ;
++-----+-------+--------+---------+----------+
+| id  | name  | depart | email   | phone    |
++-----+-------+--------+---------+----------+
+| 112 | joshi | it     | @yahooo | 98777777 |
++-----+-------+--------+---------+----------+
+1 row in set (0.00 sec)
+
+mysql>-----------------------------------------------------------------------------------------------------------------
+mysql> select *from op;
++-----+----------+------------+----------------+-----------+
+| id  | name     | depart     | email          | phone     |
++-----+----------+------------+----------------+-----------+
+| 102 | deepti   |  tech      | dr@gmail.com   | 987777123 |
+| 103 | mj       |  ec        | mj@gmail.com   | 987777177 |
+| 104 | aabbb    |  info tech | ab@gmail.com   | 987777987 |
+| 105 | lalit    |  info tech | l@gmail.com    | 987123123 |
+| 106 | anshika  | cs         | aa@gmail.com   | 987123000 |
+| 107 | mansi    | ca         | mj@gmail.com   | 98712123  |
+| 108 | vanshika | maths      | vr@gmail.com   | 987120123 |
+| 109 | jatin    | non tech   | baba@gmail.com | 2611255   |
+| 110 | yogi     | mech       | yuj@gmail.com  | 982611255 |
+| 111 | aayuu    | aiml       | ayuj@gmail.com | 982611257 |
+| 112 | joshi    | it         | @yahooo        | 98777777  |
++-----+----------+------------+----------------+-----------+
+11 rows in set (0.00 sec)
+
+mysql> select *from op where name not like 'j%';
++-----+----------+------------+----------------+-----------+
+| id  | name     | depart     | email          | phone     |
++-----+----------+------------+----------------+-----------+
+| 102 | deepti   |  tech      | dr@gmail.com   | 987777123 |
+| 103 | mj       |  ec        | mj@gmail.com   | 987777177 |
+| 104 | aabbb    |  info tech | ab@gmail.com   | 987777987 |
+| 105 | lalit    |  info tech | l@gmail.com    | 987123123 |
+| 106 | anshika  | cs         | aa@gmail.com   | 987123000 |
+| 107 | mansi    | ca         | mj@gmail.com   | 98712123  |
+| 108 | vanshika | maths      | vr@gmail.com   | 987120123 |
+| 110 | yogi     | mech       | yuj@gmail.com  | 982611255 |
+| 111 | aayuu    | aiml       | ayuj@gmail.com | 982611257 |
++-----+----------+------------+----------------+-----------+
+9 rows in set (0.01 sec)
+
+mysql> select *from op where depart not like 'hr';
++-----+----------+------------+----------------+-----------+
+| id  | name     | depart     | email          | phone     |
++-----+----------+------------+----------------+-----------+
+| 102 | deepti   |  tech      | dr@gmail.com   | 987777123 |
+| 103 | mj       |  ec        | mj@gmail.com   | 987777177 |
+| 104 | aabbb    |  info tech | ab@gmail.com   | 987777987 |
+| 105 | lalit    |  info tech | l@gmail.com    | 987123123 |
+| 106 | anshika  | cs         | aa@gmail.com   | 987123000 |
+| 107 | mansi    | ca         | mj@gmail.com   | 98712123  |
+| 108 | vanshika | maths      | vr@gmail.com   | 987120123 |
+| 109 | jatin    | non tech   | baba@gmail.com | 2611255   |
+| 110 | yogi     | mech       | yuj@gmail.com  | 982611255 |
+| 111 | aayuu    | aiml       | ayuj@gmail.com | 982611257 |
+| 112 | joshi    | it         | @yahooo        | 98777777  |
++-----+----------+------------+----------------+-----------+
+11 rows in set (0.00 sec)
+
+mysql> select *from op where email not like 'yahoo%';
++-----+----------+------------+----------------+-----------+
+| id  | name     | depart     | email          | phone     |
++-----+----------+------------+----------------+-----------+
+| 102 | deepti   |  tech      | dr@gmail.com   | 987777123 |
+| 103 | mj       |  ec        | mj@gmail.com   | 987777177 |
+| 104 | aabbb    |  info tech | ab@gmail.com   | 987777987 |
+| 105 | lalit    |  info tech | l@gmail.com    | 987123123 |
+| 106 | anshika  | cs         | aa@gmail.com   | 987123000 |
+| 107 | mansi    | ca         | mj@gmail.com   | 98712123  |
+| 108 | vanshika | maths      | vr@gmail.com   | 987120123 |
+| 109 | jatin    | non tech   | baba@gmail.com | 2611255   |
+| 110 | yogi     | mech       | yuj@gmail.com  | 982611255 |
+| 111 | aayuu    | aiml       | ayuj@gmail.com | 982611257 |
+| 112 | joshi    | it         | @yahooo        | 98777777  |
++-----+----------+------------+----------------+-----------+
+11 rows in set (0.00 sec)
+
+mysql> select *from op where email not like 'yahooo%';
++-----+----------+------------+----------------+-----------+
+| id  | name     | depart     | email          | phone     |
++-----+----------+------------+----------------+-----------+
+| 102 | deepti   |  tech      | dr@gmail.com   | 987777123 |
+| 103 | mj       |  ec        | mj@gmail.com   | 987777177 |
+| 104 | aabbb    |  info tech | ab@gmail.com   | 987777987 |
+| 105 | lalit    |  info tech | l@gmail.com    | 987123123 |
+| 106 | anshika  | cs         | aa@gmail.com   | 987123000 |
+| 107 | mansi    | ca         | mj@gmail.com   | 98712123  |
+| 108 | vanshika | maths      | vr@gmail.com   | 987120123 |
+| 109 | jatin    | non tech   | baba@gmail.com | 2611255   |
+| 110 | yogi     | mech       | yuj@gmail.com  | 982611255 |
+| 111 | aayuu    | aiml       | ayuj@gmail.com | 982611257 |
+| 112 | joshi    | it         | @yahooo        | 98777777  |
++-----+----------+------------+----------------+-----------+
+11 rows in set (0.00 sec)
+
+mysql> select *from op where email not like '%yahooo';
++-----+----------+------------+----------------+-----------+
+| id  | name     | depart     | email          | phone     |
++-----+----------+------------+----------------+-----------+
+| 102 | deepti   |  tech      | dr@gmail.com   | 987777123 |
+| 103 | mj       |  ec        | mj@gmail.com   | 987777177 |
+| 104 | aabbb    |  info tech | ab@gmail.com   | 987777987 |
+| 105 | lalit    |  info tech | l@gmail.com    | 987123123 |
+| 106 | anshika  | cs         | aa@gmail.com   | 987123000 |
+| 107 | mansi    | ca         | mj@gmail.com   | 98712123  |
+| 108 | vanshika | maths      | vr@gmail.com   | 987120123 |
+| 109 | jatin    | non tech   | baba@gmail.com | 2611255   |
+| 110 | yogi     | mech       | yuj@gmail.com  | 982611255 |
+| 111 | aayuu    | aiml       | ayuj@gmail.com | 982611257 |
++-----+----------+------------+----------------+-----------+
+10 rows in set (0.00 sec)
+
+mysql> select *from op where phone not like '9%';
++-----+-------+----------+----------------+---------+
+| id  | name  | depart   | email          | phone   |
++-----+-------+----------+----------------+---------+
+| 109 | jatin | non tech | baba@gmail.com | 2611255 |
++-----+-------+----------+----------------+---------+
+1 row in set (0.00 sec)
+
+mysql> insert into op(name, depart ,email,phone) values("shivam",'hr','shi@outlook',98765432);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select *from op where name like 's%' and email like '%outlook%';
++-----+--------+--------+-------------+----------+
+| id  | name   | depart | email       | phone    |
++-----+--------+--------+-------------+----------+
+| 113 | shivam | hr     | shi@outlook | 98765432 |
++-----+--------+--------+-------------+----------+
+1 row in set (0.00 sec)
+
+mysql> insert into op(name, depart ,email,phone) values("himanshi",'sale','shi@outlook',9
+8765789);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into op(name, depart ,email,phone) values("hi",'marketing','hi@hotmail',987
+65789);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select *from op where depart like 'sale%' or depart like 'marketing' and phone lik
+e '%789';
++-----+----------+-----------+-------------+----------+
+| id  | name     | depart    | email       | phone    |
++-----+----------+-----------+-------------+----------+
+| 114 | himanshi | sale      | shi@outlook | 98765789 |
+| 115 | hi       | marketing | hi@hotmail  | 98765789 |
++-----+----------+-----------+-------------+----------+
+2 rows in set (0.00 sec)
+
+mysql> select *from op where name like 'an' and email not like '%hotmail%';
+Empty set (0.00 sec)
+
+mysql> insert into op(name, depart ,email,phone) values("hian",'marketing','@gamil.com',9
+876500);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select *from op where name like 'an' and email not like '%hotmail%';
+Empty set (0.00 sec)
+
+mysql> select *from op where name like '%an' and email not like '%hotmail%';
++-----+------+-----------+------------+---------+
+| id  | name | depart    | email      | phone   |
++-----+------+-----------+------------+---------+
+| 116 | hian | marketing | @gamil.com | 9876500 |
++-----+------+-----------+------------+---------+
+1 row in set (0.00 sec)
+
+mysql> select *from op where phone like '98%' or  like '%55%';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'like '%55%'' at line 1
+mysql> select *from op where phone like '98%' or  phone like '%55%';
++-----+----------+------------+----------------+-----------+
+| id  | name     | depart     | email          | phone     |
++-----+----------+------------+----------------+-----------+
+| 102 | deepti   |  tech      | dr@gmail.com   | 987777123 |
+| 103 | mj       |  ec        | mj@gmail.com   | 987777177 |
+| 104 | aabbb    |  info tech | ab@gmail.com   | 987777987 |
+| 105 | lalit    |  info tech | l@gmail.com    | 987123123 |
+| 106 | anshika  | cs         | aa@gmail.com   | 987123000 |
+| 107 | mansi    | ca         | mj@gmail.com   | 98712123  |
+| 108 | vanshika | maths      | vr@gmail.com   | 987120123 |
+| 109 | jatin    | non tech   | baba@gmail.com | 2611255   |
+| 110 | yogi     | mech       | yuj@gmail.com  | 982611255 |
+| 111 | aayuu    | aiml       | ayuj@gmail.com | 982611257 |
+| 112 | joshi    | it         | @yahooo        | 98777777  |
+| 113 | shivam   | hr         | shi@outlook    | 98765432  |
+| 114 | himanshi | sale       | shi@outlook    | 98765789  |
+| 115 | hi       | marketing  | hi@hotmail     | 98765789  |
+| 116 | hian     | marketing  | @gamil.com     | 9876500   |
++-----+----------+------------+----------------+-----------+
+15 rows in set (0.00 sec)
+
+mysql>-------------------------------------------------------------------------------------------------------------------
+mysql> create table orders1(
+    -> id int primary key auto_increment,
+    -> name varchar(50),
+    -> orderdate date,
+    -> amount decimal(10,2));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> insert into orders1(name,orderdate,amount) values("mansi",2404012,550);
+ERROR 1292 (22007): Incorrect date value: '2404012' for column 'orderdate' at row 1
+mysql> insert into orders1(name,orderdate,amount) values("mansi",240412,550);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into orders1(name,orderdate,amount) values("mj",240512,600);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into orders1(name,orderdate,amount) values("deepti",250512,700);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into orders1(name,orderdate,amount) values("lalit",240612,700);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into orders1(name,orderdate,amount) values("yogendra",240612,560);
+
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into orders1(name,orderdate,amount) values("jatin",260312,660);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into orders1(name,orderdate,amount) values("vansh",240630,70);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into orders1(name,orderdate,amount) values("himanshi",240101,500);
+
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into orders1(name,orderdate,amount) values("asha",241001,650);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from orders1;
++----+----------+------------+--------+
+| id | name     | orderdate  | amount |
++----+----------+------------+--------+
+|  1 | mansi    | 2024-04-12 | 550.00 |
+|  2 | mj       | 2024-05-12 | 600.00 |
+|  3 | deepti   | 2025-05-12 | 700.00 |
+|  4 | lalit    | 2024-06-12 | 700.00 |
+|  5 | yogendra | 2024-06-12 | 560.00 |
+|  6 | jatin    | 2026-03-12 | 660.00 |
+|  7 | vansh    | 2024-06-30 |  70.00 |
+|  8 | himanshi | 2024-01-01 | 500.00 |
+|  9 | asha     | 2024-10-01 | 650.00 |
++----+----------+------------+--------+
+9 rows in set (0.00 sec)
+
+mysql> insert into orders1(name,orderdate,amount) values("anshika",241101,650)
+;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from orders1;
++----+----------+------------+--------+
+| id | name     | orderdate  | amount |
++----+----------+------------+--------+
+|  1 | mansi    | 2024-04-12 | 550.00 |
+|  2 | mj       | 2024-05-12 | 600.00 |
+|  3 | deepti   | 2025-05-12 | 700.00 |
+|  4 | lalit    | 2024-06-12 | 700.00 |
+|  5 | yogendra | 2024-06-12 | 560.00 |
+|  6 | jatin    | 2026-03-12 | 660.00 |
+|  7 | vansh    | 2024-06-30 |  70.00 |
+|  8 | himanshi | 2024-01-01 | 500.00 |
+|  9 | asha     | 2024-10-01 | 650.00 |
+| 10 | anshika  | 2024-11-01 | 650.00 |
++----+----------+------------+--------+
+10 rows in set (0.00 sec)
+
+mysql> select*from orders1 where orderdate between '2024-01-01' and '2024-06-30';
++----+----------+------------+--------+
+| id | name     | orderdate  | amount |
++----+----------+------------+--------+
+|  1 | mansi    | 2024-04-12 | 550.00 |
+|  2 | mj       | 2024-05-12 | 600.00 |
+|  4 | lalit    | 2024-06-12 | 700.00 |
+|  5 | yogendra | 2024-06-12 | 560.00 |
+|  7 | vansh    | 2024-06-30 |  70.00 |
+|  8 | himanshi | 2024-01-01 | 500.00 |
++----+----------+------------+--------+
+6 rows in set (0.00 sec)
+
+mysql> select*from orders1 where amount between 500 and 2000;
++----+----------+------------+--------+
+| id | name     | orderdate  | amount |
++----+----------+------------+--------+
+|  1 | mansi    | 2024-04-12 | 550.00 |
+|  2 | mj       | 2024-05-12 | 600.00 |
+|  3 | deepti   | 2025-05-12 | 700.00 |
+|  4 | lalit    | 2024-06-12 | 700.00 |
+|  5 | yogendra | 2024-06-12 | 560.00 |
+|  6 | jatin    | 2026-03-12 | 660.00 |
+|  8 | himanshi | 2024-01-01 | 500.00 |
+|  9 | asha     | 2024-10-01 | 650.00 |
+| 10 | anshika  | 2024-11-01 | 650.00 |
++----+----------+------------+--------+
+9 rows in set (0.00 sec)
+
+mysql>-----------------------------------------------------------------------------------------------------------
+mysql> create table emp123(
+    -> id int primary key auto_increment ,
+    -> name varchar(20),
+    -> age int ,
+    -> salary decimal(10,2),
+    -> department varchar(20));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into emp123(name,age ,salary,department)values("mansi",21,100000,'hr');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into emp123(name,age ,salary,department)values("yogendra",22,200
+00,'hr');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into emp123(name,age ,salary,department)values("deepti",21,25000
+,'it');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into emp123(name,age ,salary,department)values("anshika",26,8000
+0,'it');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into emp123(name,age ,salary,department)values("lalit",30,40000,
+'finance');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into emp123(name,age ,salary,department)values("seema",39,30000,
+'hr');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into emp123(name,age ,salary,department)values("mona",29,60000,'
+it');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into emp123(name,age ,salary,department)values("don",27,45000,'t
+ester');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into emp123(name,age ,salary,department)values("jojo",50,55000,'
+tester');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from emp123;
++----+----------+------+-----------+------------+
+| id | name     | age  | salary    | department |
++----+----------+------+-----------+------------+
+|  1 | mansi    |   21 | 100000.00 | hr         |
+|  2 | yogendra |   22 |  20000.00 | hr         |
+|  3 | deepti   |   21 |  25000.00 | it         |
+|  4 | anshika  |   26 |  80000.00 | it         |
+|  5 | lalit    |   30 |  40000.00 | finance    |
+|  6 | seema    |   39 |  30000.00 | hr         |
+|  7 | mona     |   29 |  60000.00 | it         |
+|  8 | don      |   27 |  45000.00 | tester     |
+|  9 | jojo     |   50 |  55000.00 | tester     |
++----+----------+------+-----------+------------+
+9 rows in set (0.01 sec)
+
+mysql> insert into emp123(name,age ,salary,department)values("harshita",35,100
+000,'it');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from emp123;
++----+----------+------+-----------+------------+
+| id | name     | age  | salary    | department |
++----+----------+------+-----------+------------+
+|  1 | mansi    |   21 | 100000.00 | hr         |
+|  2 | yogendra |   22 |  20000.00 | hr         |
+|  3 | deepti   |   21 |  25000.00 | it         |
+|  4 | anshika  |   26 |  80000.00 | it         |
+|  5 | lalit    |   30 |  40000.00 | finance    |
+|  6 | seema    |   39 |  30000.00 | hr         |
+|  7 | mona     |   29 |  60000.00 | it         |
+|  8 | don      |   27 |  45000.00 | tester     |
+|  9 | jojo     |   50 |  55000.00 | tester     |
+| 10 | harshita |   35 | 100000.00 | it         |
++----+----------+------+-----------+------------+
+10 rows in set (0.00 sec)
+
+mysql> select *from emp123 where age between 25 and 40;
++----+----------+------+-----------+------------+
+| id | name     | age  | salary    | department |
++----+----------+------+-----------+------------+
+|  4 | anshika  |   26 |  80000.00 | it         |
+|  5 | lalit    |   30 |  40000.00 | finance    |
+|  6 | seema    |   39 |  30000.00 | hr         |
+|  7 | mona     |   29 |  60000.00 | it         |
+|  8 | don      |   27 |  45000.00 | tester     |
+| 10 | harshita |   35 | 100000.00 | it         |
++----+----------+------+-----------+------------+
+6 rows in set (0.00 sec)
+
+mysql> select *from emp123 where salary between 30000 and 80000;
++----+---------+------+----------+------------+
+| id | name    | age  | salary   | department |
++----+---------+------+----------+------------+
+|  4 | anshika |   26 | 80000.00 | it         |
+|  5 | lalit   |   30 | 40000.00 | finance    |
+|  6 | seema   |   39 | 30000.00 | hr         |
+|  7 | mona    |   29 | 60000.00 | it         |
+|  8 | don     |   27 | 45000.00 | tester     |
+|  9 | jojo    |   50 | 55000.00 | tester     |
++----+---------+------+----------+------------+
+6 rows in set (0.01 sec)
+
+mysql> select *from emp123 where age between 30 and 50 and department 'it';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''it'' at line 1
+mysql> select *from emp123 where age between 30 and 50 and department like 'it
+';
++----+----------+------+-----------+------------+
+| id | name     | age  | salary    | department |
++----+----------+------+-----------+------------+
+| 10 | harshita |   35 | 100000.00 | it         |
++----+----------+------+-----------+------------+
+1 row in set (0.01 sec)
+
+mysql> select *from emp123 where salary between 40000 and 90000 and between 30 and 50;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'between 30 and 50' at line 1
+mysql> select *from emp123 where salary between 40000 and 90000 , between 30 a
+nd 50;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ', between 30 and 50' at line 1
+mysql> select *from emp123 where salary between 40000 and 90000 and age betwee
+n 30 and 50;
++----+-------+------+----------+------------+
+| id | name  | age  | salary   | department |
++----+-------+------+----------+------------+
+|  5 | lalit |   30 | 40000.00 | finance    |
+|  9 | jojo  |   50 | 55000.00 | tester     |
++----+-------+------+----------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select *from emp123 where salary not like between 25000 and 60000;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'between 25000 and 60000' at line 1
+mysql> select *from emp123 where salary not like between 25000 and 60000;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'between 25000 and 60000' at line 1
+mysql> select *from emp123 where  not like salary between 25000 and 60000;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'like salary between 25000 and 60000' at line 1
+mysql> select *from emp123 where  salary not between 25000 and 60000;
++----+----------+------+-----------+------------+
+| id | name     | age  | salary    | department |
++----+----------+------+-----------+------------+
+|  1 | mansi    |   21 | 100000.00 | hr         |
+|  2 | yogendra |   22 |  20000.00 | hr         |
+|  4 | anshika  |   26 |  80000.00 | it         |
+| 10 | harshita |   35 | 100000.00 | it         |
++----+----------+------+-----------+------------+
+4 rows in set (0.00 sec)
+
+mysql>----------------------------------------------------------------------------------------------------------------
+mysql> create table customers1(
+    -> id int primary key auto_increment,
+    -> name varchar(50),
+    -> city varchar(50),
+    -> mem_type varchar(20));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> insert into customers1(name,city,mem_type)values('Alice','new york','platinum');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into customers1(name,city,mem_type)values('yogi','indore','platinum');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customers1(name,city,mem_type)values('yogendra','los angeles','gold');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customers1(name,city,mem_type)values('john','paris','silver');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customers1(name,city,mem_type)values('michael','chicago','gold');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customers1(name,city,mem_type)values('durgesh','chicago','g
+old');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customers1(name,city,mem_type)values('deepti','new york','s
+ilver');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customers1(name,city,mem_type)values('deepti','new york','platinum');
+Query O
+
+mysql> insert into customers1(name,city,mem_type)values('sumit','lahore','plat
+inum');insert into customers1(name,city,mem_type)values('deepti','new york','silver');  uery OK, 1 row affected (0.01 sec)
+       insert into customers1(name,city,mem_type)values('deepti','new york','silver');nsert into customers1(name,city,mem_type)values('sumit','lahoreinsert into customers1(name,city,mem_type)values('deepti','new y
+ork','s
+'new yoinsert into customers1(name,city,mem_type)values('deepti','new york','silver');
+pti','ninsert into customers1(name,city,mem_type)values('deepti','new york','silver');nto customers1(name,city,mem_type)values('deepti',  insert into customers1(name,city,mem_type)values('deepti','new york','silver');pti','new york','silver');
+mysql> select*from customers;
++------+---------+--------+------------------+
+| c_id | name    | bal    | acc_type         |
++------+---------+--------+------------------+
+|  101 | mansi   |  52400 | saving           |
+|  102 | deepti  |   1000 | checking account |
+|  103 | anshika |   1050 | saving           |
+|  104 | mitesh  | 104900 | saving           |
+|  104 | mj      |  19900 | deposite         |
++------+---------+--------+------------------+
+5 rows in set (0.01 sec)
+
+mysql> select*from customers1;
++----+----------+-------------+----------+
+| id | name     | city        | mem_type |
++----+----------+-------------+----------+
+|  1 | Alice    | new york    | platinum |
+|  2 | yogi     | indore      | platinum |
+|  3 | yogendra | los angeles | gold     |
+|  4 | john     | paris       | silver   |
+|  5 | michael  | chicago     | gold     |
+|  6 | durgesh  | chicago     | gold     |
+|  7 | deepti   | new york    | silver   |
+|  8 | deepti   | new york    | platinum |
+|  9 | sumit    | lahore      | platinum |
+| 10 | deepti   | new york    | silver   |
++----+----------+-------------+----------+
+10 rows in set (0.00 sec)
+
+mysql> select *from customers1 city in ('New York', 'Los Angeles', 'Chicago');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'in ('New York', 'Los Angeles', 'Chicago')' at line 1
+mysql> select *from customers1 WHERE city in ('New York', 'Los Angeles', 'Chicago');
++----+----------+-------------+----------+
+| id | name     | city        | mem_type |
++----+----------+-------------+----------+
+|  1 | Alice    | new york    | platinum |
+|  3 | yogendra | los angeles | gold     |
+|  5 | michael  | chicago     | gold     |
+|  6 | durgesh  | chicago     | gold     |
+|  7 | deepti   | new york    | silver   |
+|  8 | deepti   | new york    | platinum |
+| 10 | deepti   | new york    | silver   |
++----+----------+-------------+----------+
+7 rows in set (0.00 sec)
+
+mysql> select *from customers1 WHERE MEM_type in ('Gold', 'Platinum', 'Silver');
++----+----------+-------------+----------+
+| id | name     | city        | mem_type |
++----+----------+-------------+----------+
+|  1 | Alice    | new york    | platinum |
+|  2 | yogi     | indore      | platinum |
+|  3 | yogendra | los angeles | gold     |
+|  4 | john     | paris       | silver   |
+|  5 | michael  | chicago     | gold     |
+|  6 | durgesh  | chicago     | gold     |
+|  7 | deepti   | new york    | silver   |
+|  8 | deepti   | new york    | platinum |
+|  9 | sumit    | lahore      | platinum |
+| 10 | deepti   | new york    | silver   |
++----+----------+-------------+----------+
+10 rows in set (0.00 sec)
+
+mysql> select *from customers1 WHERE name in ('Alice', 'John', 'Michael');
++----+---------+----------+----------+
+| id | name    | city     | mem_type |
++----+---------+----------+----------+
+|  1 | Alice   | new york | platinum |
+|  4 | john    | paris    | silver   |
+|  5 | michael | chicago  | gold     |
++----+---------+----------+----------+
+3 rows in set (0.00 sec)
+
+mysql>--------------------------------------------------------------------------------------------------------
+mysql> create table emp300(id int primary key auto_increment,
+    -> name varchar(50),
+    -> age int,
+    -> salary decimal(10,2),
+    -> depart varchar(50));
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> insert into emp300(name ,age,salary,depart) values('yogendra',45,100000,'it');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into emp300(name ,age,salary,depart) values('vivek',40,50000,'hr');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into emp300(name ,age,salary,depart) values('deepti',22,45000,'sales');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into emp300(name ,age,salary,depart) values('mansi',25,60000,'finance');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into emp300(name ,age,salary,depart) values('durgesh',35,75000,'marketing');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into emp300(name ,age,salary,depart) values('jatin',30,45000,'sales');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into emp300(name ,age,salary,depart) values('deepak',28,50000,'it');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into emp300(name ,age,salary,depart) values('lalit',40,35000,'hr');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into emp300(name ,age,salary,depart) values('mitesh',30,60000,'sales');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into emp300(name ,age,salary,depart) values('ravi',25,60000,'it');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from emp300;
++----+----------+------+-----------+-----------+
+| id | name     | age  | salary    | depart    |
++----+----------+------+-----------+-----------+
+|  1 | yogendra |   45 | 100000.00 | it        |
+|  2 | vivek    |   40 |  50000.00 | hr        |
+|  3 | deepti   |   22 |  45000.00 | sales     |
+|  4 | mansi    |   25 |  60000.00 | finance   |
+|  5 | durgesh  |   35 |  75000.00 | marketing |
+|  6 | jatin    |   30 |  45000.00 | sales     |
+|  7 | deepak   |   28 |  50000.00 | it        |
+|  8 | lalit    |   40 |  35000.00 | hr        |
+|  9 | mitesh   |   30 |  60000.00 | sales     |
+| 10 | ravi     |   25 |  60000.00 | it        |
++----+----------+------+-----------+-----------+
+10 rows in set (0.00 sec)
+
+mysql> select*from emp300 where age in(25, 30, 35, 40, 45);
++----+----------+------+-----------+-----------+
+| id | name     | age  | salary    | depart    |
++----+----------+------+-----------+-----------+
+|  1 | yogendra |   45 | 100000.00 | it        |
+|  2 | vivek    |   40 |  50000.00 | hr        |
+|  4 | mansi    |   25 |  60000.00 | finance   |
+|  5 | durgesh  |   35 |  75000.00 | marketing |
+|  6 | jatin    |   30 |  45000.00 | sales     |
+|  8 | lalit    |   40 |  35000.00 | hr        |
+|  9 | mitesh   |   30 |  60000.00 | sales     |
+| 10 | ravi     |   25 |  60000.00 | it        |
++----+----------+------+-----------+-----------+
+8 rows in set (0.00 sec)
+
+mysql> select*from emp300 where salary in(30000, 50000, 70000, 100000);
++----+----------+------+-----------+--------+
+| id | name     | age  | salary    | depart |
++----+----------+------+-----------+--------+
+|  1 | yogendra |   45 | 100000.00 | it     |
+|  2 | vivek    |   40 |  50000.00 | hr     |
+|  7 | deepak   |   28 |  50000.00 | it     |
++----+----------+------+-----------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select*from emp300 where depart in('IT', 'HR', 'Sales');
++----+----------+------+-----------+--------+
+| id | name     | age  | salary    | depart |
++----+----------+------+-----------+--------+
+|  1 | yogendra |   45 | 100000.00 | it     |
+|  2 | vivek    |   40 |  50000.00 | hr     |
+|  3 | deepti   |   22 |  45000.00 | sales  |
+|  6 | jatin    |   30 |  45000.00 | sales  |
+|  7 | deepak   |   28 |  50000.00 | it     |
+|  8 | lalit    |   40 |  35000.00 | hr     |
+|  9 | mitesh   |   30 |  60000.00 | sales  |
+| 10 | ravi     |   25 |  60000.00 | it     |
++----+----------+------+-----------+--------+
+8 rows in set (0.00 sec)
+
+mysql> select*from emp300 where depart not in(22, 25, 28, 30);
++----+----------+------+-----------+-----------+
+| id | name     | age  | salary    | depart    |
++----+----------+------+-----------+-----------+
+|  1 | yogendra |   45 | 100000.00 | it        |
+|  2 | vivek    |   40 |  50000.00 | hr        |
+|  3 | deepti   |   22 |  45000.00 | sales     |
+|  4 | mansi    |   25 |  60000.00 | finance   |
+|  5 | durgesh  |   35 |  75000.00 | marketing |
+|  6 | jatin    |   30 |  45000.00 | sales     |
+|  7 | deepak   |   28 |  50000.00 | it        |
+|  8 | lalit    |   40 |  35000.00 | hr        |
+|  9 | mitesh   |   30 |  60000.00 | sales     |
+| 10 | ravi     |   25 |  60000.00 | it        |
++----+----------+------+-----------+-----------+
+10 rows in set, 5 warnings (0.01 sec)
+
+mysql> select*from emp300 where age not in(22, 25, 28, 30);
++----+----------+------+-----------+-----------+
+| id | name     | age  | salary    | depart    |
++----+----------+------+-----------+-----------+
+|  1 | yogendra |   45 | 100000.00 | it        |
+|  2 | vivek    |   40 |  50000.00 | hr        |
+|  5 | durgesh  |   35 |  75000.00 | marketing |
+|  8 | lalit    |   40 |  35000.00 | hr        |
++----+----------+------+-----------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> select*from emp300 where salary not in(22, 25, 28, 30);
++----+----------+------+-----------+-----------+
+| id | name     | age  | salary    | depart    |
++----+----------+------+-----------+-----------+
+|  1 | yogendra |   45 | 100000.00 | it        |
+|  2 | vivek    |   40 |  50000.00 | hr        |
+|  3 | deepti   |   22 |  45000.00 | sales     |
+|  4 | mansi    |   25 |  60000.00 | finance   |
+|  5 | durgesh  |   35 |  75000.00 | marketing |
+|  6 | jatin    |   30 |  45000.00 | sales     |
+|  7 | deepak   |   28 |  50000.00 | it        |
+|  8 | lalit    |   40 |  35000.00 | hr        |
+|  9 | mitesh   |   30 |  60000.00 | sales     |
+| 10 | ravi     |   25 |  60000.00 | it        |
++----+----------+------+-----------+-----------+
+10 rows in set (0.00 sec)
+
+mysql> select*from emp300 where salary not in(45000, 60000, 75000);
++----+----------+------+-----------+--------+
+| id | name     | age  | salary    | depart |
++----+----------+------+-----------+--------+
+|  1 | yogendra |   45 | 100000.00 | it     |
+|  2 | vivek    |   40 |  50000.00 | hr     |
+|  7 | deepak   |   28 |  50000.00 | it     |
+|  8 | lalit    |   40 |  35000.00 | hr     |
++----+----------+------+-----------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select *from emp300  where depart not in ('Marketing','Finance');
++----+----------+------+-----------+--------+
+| id | name     | age  | salary    | depart |
++----+----------+------+-----------+--------+
+|  1 | yogendra |   45 | 100000.00 | it     |
+|  2 | vivek    |   40 |  50000.00 | hr     |
+|  3 | deepti   |   22 |  45000.00 | sales  |
+|  6 | jatin    |   30 |  45000.00 | sales  |
+|  7 | deepak   |   28 |  50000.00 | it     |
+|  8 | lalit    |   40 |  35000.00 | hr     |
+|  9 | mitesh   |   30 |  60000.00 | sales  |
+| 10 | ravi     |   25 |  60000.00 | it     |
++----+----------+------+-----------+--------+
+8 rows in set (0.00 sec)
+
+mysql>------------------------------------------------------------------------------------------------------------------

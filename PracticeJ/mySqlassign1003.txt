@@ -1,0 +1,565 @@
+
+mysql> create table employee(
+    -> id int primary key auto_increment,
+    -> name varchar(20),
+    -> depart varchar(20),
+    -> jobrole varchar(20),
+    -> salary decimal(10,2),
+    -> hiredate date);
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> insert into employee(name,depart,jobrole,salary,hiredate) values('alice','hr','manager',6000,20230320)
+    -> ;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into employee(name,depart,jobrole,salary,hiredate) values('bob','hr','recru
+iter',4000,20230320);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee(name,depart,jobrole,salary,hiredate) values('charlie','it','d
+evloper',5000,20220725);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee(name,depart,jobrole,salary,hiredate) values('david','it','dev
+loper',5500,20211205);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee(name,depart,jobrole,salary,hiredate) values('eve','it','teste
+r',4500,20230610);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee(name,depart,jobrole,salary,hiredate) values('frank','it','tes
+ter',4800,20230912);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee(name,depart,jobrole,salary,hiredate) values('grace','finance'
+,'analyst',5200,20211118);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee(name,depart,jobrole,salary,hiredate) values('hank','finance',
+'analyst',5300,20220814);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee(name,depart,jobrole,salary,hiredate) values('ivy','finance','
+manager',7000,20230814);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee(name,depart,jobrole,salary,hiredate) values('jack','hr','recr
+uiter',4200,20221005);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from employee;
++----+---------+---------+-----------+---------+------------+
+| id | name    | depart  | jobrole   | salary  | hiredate   |
++----+---------+---------+-----------+---------+------------+
+|  1 | alice   | hr      | manager   | 6000.00 | 2023-03-20 |
+|  2 | bob     | hr      | recruiter | 4000.00 | 2023-03-20 |
+|  3 | charlie | it      | devloper  | 5000.00 | 2022-07-25 |
+|  4 | david   | it      | devloper  | 5500.00 | 2021-12-05 |
+|  5 | eve     | it      | tester    | 4500.00 | 2023-06-10 |
+|  6 | frank   | it      | tester    | 4800.00 | 2023-09-12 |
+|  7 | grace   | finance | analyst   | 5200.00 | 2021-11-18 |
+|  8 | hank    | finance | analyst   | 5300.00 | 2022-08-14 |
+|  9 | ivy     | finance | manager   | 7000.00 | 2023-08-14 |
+| 10 | jack    | hr      | recruiter | 4200.00 | 2022-10-05 |
++----+---------+---------+-----------+---------+------------+
+10 rows in set (0.00 sec)
+
+mysql> select depart ,count(*) from employee group by depart;
++---------+----------+
+| depart  | count(*) |
++---------+----------+
+| hr      |        3 |
+| it      |        4 |
+| finance |        3 |
++---------+----------+
+3 rows in set (0.01 sec)
+
+mysql> select salary,avg(salary) from employee group by jobrole;
+ERROR 1055 (42000): Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'mj.employee.salary' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+mysql> select jobrole,avg(salary) from employee group by jobrole;
++-----------+-------------+
+| jobrole   | avg(salary) |
++-----------+-------------+
+| manager   | 6500.000000 |
+| recruiter | 4100.000000 |
+| devloper  | 5250.000000 |
+| tester    | 4650.000000 |
+| analyst   | 5250.000000 |
++-----------+-------------+
+5 rows in set (0.01 sec)
+
+mysql> select depart,max(salary) from employee group by depart;
++---------+-------------+
+| depart  | max(salary) |
++---------+-------------+
+| hr      |     6000.00 |
+| it      |     5500.00 |
+| finance |     7000.00 |
++---------+-------------+
+3 rows in set (0.01 sec)
+
+mysql> select min(salary) from employee ;
++-------------+
+| min(salary) |
++-------------+
+|     4000.00 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select count(*) from employee where hiredate>20230101;
++----------+
+| count(*) |
++----------+
+|        5 |
++----------+
+1 row in set (0.01 sec)
+
+mysql> select depart,count(salary) as total from employee group by depart;
++---------+-------+
+| depart  | total |
++---------+-------+
+| hr      |     3 |
+| it      |     4 |
+| finance |     3 |
++---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select depart,sum(salary) as total from employee group by depart;
++---------+----------+
+| depart  | total    |
++---------+----------+
+| hr      | 14200.00 |
+| it      | 19800.00 |
+| finance | 17500.00 |
++---------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select jobrole,max(salary) as highest from employee group by jobrole;
++-----------+---------+
+| jobrole   | highest |
++-----------+---------+
+| manager   | 7000.00 |
+| recruiter | 4200.00 |
+| devloper  | 5500.00 |
+| tester    | 4800.00 |
+| analyst   | 5300.00 |
++-----------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select avg(salary) from employee where hiredate>20220101;
++-------------+
+| avg(salary) |
++-------------+
+| 5100.000000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select depart from employee group by depart having sum(salary)>10000;
++---------+
+| depart  |
++---------+
+| hr      |
+| it      |
+| finance |
++---------+
+3 rows in set (0.00 sec)
+
+mysql> select depart ,count(*) from employee group by depart order by count desc limit 1;
+
+ERROR 1054 (42S22): Unknown column 'count' in 'order clause'
+mysql> select depart ,count(*) from employee group by depart order by count(*) desc limit
+ 1;
++--------+----------+
+| depart | count(*) |
++--------+----------+
+| it     |        4 |
++--------+----------+
+1 row in set (0.00 sec)
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+mysql> create table students(
+    -> id int primary key auto_increment,
+    -> name varchar(20),
+    -> class int,
+    -> subject varchar(20),
+    -> marks int,
+    -> examdate date);
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> insert into students(name,class,subject,marks,examdate) values('mansi',10,'maths',85,20230210);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into students(name,class,subject,marks,examdate) values('alice',10,'science
+',78,20230320);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into students(name,class,subject,marks,examdate) values('bob',9,'maths',92,
+20230420);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into students(name,class,subject,marks,examdate) values('david',10,'science
+',80,20230525);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into students(name,class,subject,marks,examdate) values('eve',10,'maths',88
+,20230630);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into students(name,class,subject,marks,examdate) values('frank',9,'science'
+,75,20230710);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into students(name,class,subject,marks,examdate) values('grace',10,'maths',
+90,20230820);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into students(name,class,subject,marks,examdate) values('hank',9,'maths',85
+,20230915);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into students(name,class,subject,marks,examdate) values('ivy',10,'science',
+82,20231010);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into students(name,class,subject,marks,examdate) values('jack',9,'science',
+79,20231105);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from students;
++----+-------+-------+---------+-------+------------+
+| id | name  | class | subject | marks | examdate   |
++----+-------+-------+---------+-------+------------+
+|  1 | mansi |    10 | maths   |    85 | 2023-02-10 |
+|  2 | alice |    10 | science |    78 | 2023-03-20 |
+|  3 | bob   |     9 | maths   |    92 | 2023-04-20 |
+|  4 | david |    10 | science |    80 | 2023-05-25 |
+|  5 | eve   |    10 | maths   |    88 | 2023-06-30 |
+|  6 | frank |     9 | science |    75 | 2023-07-10 |
+|  7 | grace |    10 | maths   |    90 | 2023-08-20 |
+|  8 | hank  |     9 | maths   |    85 | 2023-09-15 |
+|  9 | ivy   |    10 | science |    82 | 2023-10-10 |
+| 10 | jack  |     9 | science |    79 | 2023-11-05 |
++----+-------+-------+---------+-------+------------+
+10 rows in set (0.00 sec)
+
+mysql> update name ='john' where id=1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '='john' where id=1' at line 1
+mysql> update students set name ='john' where id=1;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from students;
++----+-------+-------+---------+-------+------------+
+| id | name  | class | subject | marks | examdate   |
++----+-------+-------+---------+-------+------------+
+|  1 | john  |    10 | maths   |    85 | 2023-02-10 |
+|  2 | alice |    10 | science |    78 | 2023-03-20 |
+|  3 | bob   |     9 | maths   |    92 | 2023-04-20 |
+|  4 | david |    10 | science |    80 | 2023-05-25 |
+|  5 | eve   |    10 | maths   |    88 | 2023-06-30 |
+|  6 | frank |     9 | science |    75 | 2023-07-10 |
+|  7 | grace |    10 | maths   |    90 | 2023-08-20 |
+|  8 | hank  |     9 | maths   |    85 | 2023-09-15 |
+|  9 | ivy   |    10 | science |    82 | 2023-10-10 |
+| 10 | jack  |     9 | science |    79 | 2023-11-05 |
++----+-------+-------+---------+-------+------------+
+10 rows in set (0.00 sec)
+
+mysql> select class,count(*) from students group by class;
++-------+----------+
+| class | count(*) |
++-------+----------+
+|    10 |        6 |
+|     9 |        4 |
++-------+----------+
+2 rows in set (0.00 sec)
+
+mysql> select subject,max(*) from students group by subjects having subject='maths';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*) from students group by subjects having subject='maths'' at line 1
+mysql> select subject,max(subject) from students group by subjects having subject='maths'
+;
+ERROR 1054 (42S22): Unknown column 'subjects' in 'group statement'
+mysql> select subject,max(marks) from students group by subject having subject='maths';
+
++---------+--------------+
+| subject | max(subject) |
++---------+--------------+
+| maths   | 92       	 |
++---------+--------------+
+1 row in set (0.01 sec)
+
+mysql> select subject,max(marks) from students group by subject having subject='maths';
++---------+------------+
+| subject | max(marks) |
++---------+------------+
+| maths   |         92 |
++---------+------------+
+1 row in set (0.01 sec)
+
+mysql> select subject,avg(marks) from students group by subject;
++---------+------------+
+| subject | avg(marks) |
++---------+------------+
+| maths   |    88.0000 |
+| science |    78.8000 |
++---------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select marks,count(*) from students group by marks having marks>80;
++-------+----------+
+| marks | count(*) |
++-------+----------+
+|    85 |        2 |
+|    92 |        1 |
+|    88 |        1 |
+|    90 |        1 |
+|    82 |        1 |
++-------+----------+
+5 rows in set (0.00 sec)
+
+mysql> select subject,max(avg(marks)) from students group by subject;
+ERROR 1111 (HY000): Invalid use of group function
+mysql> select subject,max from( select subjects ,avg(marks) from students group by subject) group by subject;
+ERROR 1248 (42000): Every derived table must have its own alias
+mysql> select subject,max from( select subjects ,avg(marks) from students group by subject) as average group by subject;
+ERROR 1054 (42S22): Unknown column 'subjects' in 'field list'
+mysql> select subject,max from( select subject ,avg(marks) from students group by subject
+) as average group by subject;
+ERROR 1054 (42S22): Unknown column 'max' in 'field list'
+mysql> select subject,max(avgmarks) from( select subject ,avg(marks) as avgmarks from students group by subject) as average group by subject;
++---------+---------------+
+| subject | max(avgmarks) |
++---------+---------------+
+| maths   |       88.0000 |
+| science |       78.8000 |
++---------+---------------+
+2 rows in set (0.00 sec)
+
+mysql> select subject,max(avgmarks) from( select subject ,avg(marks) as avgmarks from students group by subject) as average group by subject limit 1;
++---------+---------------+
+| subject | max(avgmarks) |
++---------+---------------+
+| maths   |       88.0000 |
++---------+---------------+
+1 row in set (0.00 sec)
+
+mysql> select min(marks) from students where subject='science';
++------------+
+| min(marks) |
++------------+
+|         75 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select class ,count(*) from students group by class having marks>85;
+ERROR 1054 (42S22): Unknown column 'marks' in 'having clause'
+mysql> select class ,count(marks') from students group by class having marks>85;
+    '>
+    '> select class ,count(marks) from students group by class having marks>85;
+    '> select class ,count(*) from students group by class having marks>85;
+    '> ^C
+mysql> select class ,count(*) from students group by class having marks>85;
+ERROR 1054 (42S22): Unknown column 'marks' in 'having clause'
+mysql> select class ,count(*) from students where marks>85 group by class;
++-------+----------+
+| class | count(*) |
++-------+----------+
+|     9 |        1 |
+|    10 |        2 |
++-------+----------+
+2 rows in set (0.00 sec)
+
+mysql> select subject,count(*) from students group by subject having avg(marks)>80;
++---------+----------+
+| subject | count(*) |
++---------+----------+
+| maths   |        5 |
++---------+----------+
+1 row in set (0.01 sec)
+
+mysql> select subject,avg(*) from students group by subject having avg(marks)>80;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*) from students group by subject having avg(marks)>80' at line 1
+mysql> select subject,avg(marks) from students group by subject having avg(marks)>80;
++---------+------------+
+| subject | avg(marks) |
++---------+------------+
+| maths   |    88.0000 |
++---------+------------+
+1 row in set (0.00 sec)
+
+mysql> select *from student max(marks);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'max(marks)' at line 1
+mysql> select *from student where max(marks);
+ERROR 1111 (HY000): Invalid use of group function
+mysql> select *from students max(marks);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'max(marks)' at line 1
+mysql> select  max(marks) from students;
++------------+
+| max(marks) |
++------------+
+|         92 |
++------------+
+1 row in set (0.00 sec)
+-------===================================================================================================================
+======================================================================================================================================================
+mysql> select*from employee;
++----+---------+---------+-----------+---------+------------+
+| id | name    | depart  | jobrole   | salary  | hiredate   |
++----+---------+---------+-----------+---------+------------+
+|  1 | alice   | hr      | manager   | 6000.00 | 2023-03-20 |
+|  2 | bob     | hr      | recruiter | 4000.00 | 2023-03-20 |
+|  3 | charlie | it      | devloper  | 5000.00 | 2022-07-25 |
+|  4 | david   | it      | devloper  | 5500.00 | 2021-12-05 |
+|  5 | eve     | it      | tester    | 4500.00 | 2023-06-10 |
+|  6 | frank   | it      | tester    | 4800.00 | 2023-09-12 |
+|  7 | grace   | finance | analyst   | 5200.00 | 2021-11-18 |
+|  8 | hank    | finance | analyst   | 5300.00 | 2022-08-14 |
+|  9 | ivy     | finance | manager   | 7000.00 | 2023-08-14 |
+| 10 | jack    | hr      | recruiter | 4200.00 | 2022-10-05 |
++----+---------+---------+-----------+---------+------------+
+10 rows in set (0.00 sec)
+
+mysql> select depart ,count(*) as temp from employee group by depart having temp>=2;
++---------+------+
+| depart  | temp |
++---------+------+
+| hr      |    3 |
+| it      |    4 |
+| finance |    3 |
++---------+------+
+3 rows in set (0.00 sec)
+
+mysql> select depart ,sum(salary) from employee group by depart order by salary desc;
+ERROR 1055 (42000): Expression #1 of ORDER BY clause is not in GROUP BY clause and contains nonaggregated column 'mj.employee.salary' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+mysql> select depart ,sum(salary) from employee group by depart order by sum(salary) de
+sc;
++---------+-------------+
+| depart  | sum(salary) |
++---------+-------------+
+| it      |    19800.00 |
+| finance |    17500.00 |
+| hr      |    14200.00 |
++---------+-------------+
+3 rows in set (0.01 sec)
+
+mysql> select jobrole ,max(salary) group by jobrole having sum(salary)>10000;
+ERROR 1054 (42S22): Unknown column 'jobrole' in 'field list'
+mysql> select jobrole ,max(salary) from employee group by jobrole having sum(salary)>10
+000;
++----------+-------------+
+| jobrole  | max(salary) |
++----------+-------------+
+| manager  |     7000.00 |
+| devloper |     5500.00 |
+| analyst  |     5300.00 |
++----------+-------------+
+select jobrole,avg(salary) as average from employee where hired' at line 1
+mysql> select jobrole,avg(salary) as average from employee where hiredate>20220101 group by jobrole having avg(salary)>4500;
++----------+-------------+
+| jobrole  | average     |
++----------+-------------+
+| manager  | 6500.000000 |
+| devloper | 5000.000000 |
+| tester   | 4650.000000 |
+| analyst  | 5300.000000 |
++----------+-------------+
+4 rows in set (0.01 sec)
+
+mysql> select depart ,sum(salary) from employee group by depart having sum(salary)>10000 order by depart;
++---------+-------------+
+| depart  | sum(salary) |
++---------+-------------+
+| finance |    17500.00 |
+| hr      |    14200.00 |
+| it      |    19800.00 |
++---------+-------------+
+3 rows in set (0.01 sec)
+mysql>====================================================================================================================================================================================================================================================================================================================================
+mysql> select*from students;
++----+-------+-------+---------+-------+------------+
+| id | name  | class | subject | marks | examdate   |
++----+-------+-------+---------+-------+------------+
+|  1 | john  |    10 | maths   |    85 | 2023-02-10 |
+|  2 | alice |    10 | science |    78 | 2023-03-20 |
+|  3 | bob   |     9 | maths   |    92 | 2023-04-20 |
+|  4 | david |    10 | science |    80 | 2023-05-25 |
+|  5 | eve   |    10 | maths   |    88 | 2023-06-30 |
+|  6 | frank |     9 | science |    75 | 2023-07-10 |
+|  7 | grace |    10 | maths   |    90 | 2023-08-20 |
+|  8 | hank  |     9 | maths   |    85 | 2023-09-15 |
+|  9 | ivy   |    10 | science |    82 | 2023-10-10 |
+| 10 | jack  |     9 | science |    79 | 2023-11-05 |
++----+-------+-------+---------+-------+------------+
+10 rows in set (0.00 sec)
+
+mysql> select subject,avg(marks) from students group by subject having avg(marks)>80;
++---------+------------+
+| subject | avg(marks) |
++---------+------------+
+| maths   |    88.0000 |
++---------+------------+
+1 row in set (0.00 sec)
+
+mysql> select class ,count(*) from students group by class order by class desc;
++-------+----------+
+| class | count(*) |
++-------+----------+
+|    10 |        6 |
+|     9 |        4 |
++-------+----------+
+2 rows in set (0.00 sec)
+
+mysql> select subject ,avg(marks) from students group by subject having avg(marks)>85 order by subject desc limit 1;
++---------+------------+
+| subject | avg(marks) |
++---------+------------+
+| maths   |    88.0000 |
++---------+------------+
+1 row in set (0.00 sec)
+
+mysql> select*from students;
++----+-------+-------+---------+-------+------------+
+| id | name  | class | subject | marks | examdate   |
++----+-------+-------+---------+-------+------------+
+|  1 | john  |    10 | maths   |    85 | 2023-02-10 |
+|  2 | alice |    10 | science |    78 | 2023-03-20 |
+|  3 | bob   |     9 | maths   |    92 | 2023-04-20 |
+|  4 | david |    10 | science |    80 | 2023-05-25 |
+|  5 | eve   |    10 | maths   |    88 | 2023-06-30 |
+|  6 | frank |     9 | science |    75 | 2023-07-10 |
+|  7 | grace |    10 | maths   |    90 | 2023-08-20 |
+|  8 | hank  |     9 | maths   |    85 | 2023-09-15 |
+|  9 | ivy   |    10 | science |    82 | 2023-10-10 |
+| 10 | jack  |     9 | science |    79 | 2023-11-05 |
++----+-------+-------+---------+-------+------------+
+10 rows in set (0.00 sec)
+
+mysql> select *from students order by marks desc limit 1;
++----+------+-------+---------+-------+------------+
+| id | name | class | subject | marks | examdate   |
++----+------+-------+---------+-------+------------+
+|  3 | bob  |     9 | maths   |    92 | 2023-04-20 |
++----+------+-------+---------+-------+------------+
+1 row in set (0.00 sec)
+
+mysql> select class ,marks >85 from students group by class having count(marks)>2;
+ERROR 1055 (42000): Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'mj.students.marks' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+mysql> select class ,count(*) from students group by class having count(marks)>2 and marks>85;
+ERROR 1054 (42S22): Unknown column 'marks' in 'having clause'
+mysql> select class from students where marks>85 group by class having count(marks)>2 ;
+Empty set (0.00 sec)
+
+mysql> select class ,count(*) from students where marks>85 group by class having count(marks)>2 ;
+Empty set (0.00 sec)
+
+mysql> select class ,count(*) from students where marks>85 group by class having count(marks)>=2 ;
++-------+----------+
+| class | count(*) |
++-------+----------+
+|    10 |        2 |
++-------+----------+
+1 row in set (0.00 sec)
+
+mysql>=================================================================================================================================================================================================================================================================================================================================

@@ -1,0 +1,482 @@
+mysql> show tables;
+ERROR 1046 (3D000): No database selected
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| infodb             |
+| information_schema |
+| mj                 |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+6 rows in set (0.05 sec)
+
+mysql> use mj;
+Database changed
+mysql> show tables;
++--------------+
+| Tables_in_mj |
++--------------+
+| emp1         |
+| emp12        |
+| emp200       |
+| employee     |
+| employees    |
++--------------+
+5 rows in set (0.02 sec)
+
+mysql> desc emp200
+    -> ;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| emp_id   | int         | YES  |     | NULL    |       |
+| name     | varchar(20) | YES  |     | NULL    |       |
+| depart   | varchar(20) | YES  |     | NULL    |       |
+| salary   | int         | YES  |     | NULL    |       |
+| hiredate | date        | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> select*from emp200;
++--------+---------------+---------+--------+------------+
+| emp_id | name          | depart  | salary | hiredate   |
++--------+---------------+---------+--------+------------+
+|    101 | e1            | maths   |  20000 | 2025-07-03 |
+|    102 | e2            | physics |  25000 | 2025-07-03 |
+|    103 | e3            | biology |  35000 | 2026-07-03 |
+|    103 | e3            | biology |  35000 | 2021-07-03 |
+|    104 | michael scott | biology |  35000 | 2021-07-03 |
++--------+---------------+---------+--------+------------+
+5 rows in set (0.01 sec)
+mysql> UPDATE emp200 set salary = salary * 1.10 where hiredate >= '2021-01-01' AND hiredate < '2022-01-01';
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select*from emp200;
++--------+---------------+---------+--------+------------+
+| emp_id | name          | depart  | salary | hiredate   |
++--------+---------------+---------+--------+------------+
+|    101 | e1            | maths   |  20000 | 2025-07-03 |
+|    102 | e2            | physics |  25000 | 2025-07-03 |
+|    103 | e3            | biology |  35000 | 2026-07-03 |
+|    103 | e3            | biology |  38500 | 2021-07-03 |
+|    104 | michael scott | Hr      |  38500 | 2021-07-03 |
++--------+---------------+---------+--------+------------+
+5 rows in set (0.00 sec)
+
+
+------------------------------------------------------------------------------------------------------------------
+mysql> create table product;
+ERROR 4028 (HY000): A table must have at least one visible column.
+mysql> create table product(pro_id int,name varchar(20),category varchar(20),price double,stock int);
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> select*from product;
+Empty set (0.01 sec)
+
+mysql> show table product;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'product' at line 1
+mysql> desc product;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| pro_id   | int         | YES  |     | NULL    |       |
+| name     | varchar(20) | YES  |     | NULL    |       |
+| category | varchar(20) | YES  |     | NULL    |       |
+| price    | double      | YES  |     | NULL    |       |
+| stock    | int         | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.03 sec)
+
+mysql> insert table product(101,"tv","electronics",25000,50);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table product(101,"tv","electronics",25000,50)' at line 1
+mysql> insert into productvalues(101,"tv","electronics",25000,50);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '101,"tv","electronics",25000,50)' at line 1
+mysql> insert into productvalues(101,"tv","electronics",25000.0,50);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '101,"tv","electronics",25000.0,50)' at line 1
+mysql> insert into product values(101,"tv","electronics",25000.0,50);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into product values(102,"headphones","electronics",2000.0,30);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into product values(103,"lakme","fashion",500,30);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into product values(104,"forever","fashion",1000,25);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into product values(104,"bulb","electronics",200,250);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from product;
++--------+------------+-------------+-------+-------+
+| pro_id | name       | category    | price | stock |
++--------+------------+-------------+-------+-------+
+|    101 | tv         | electronics | 25000 |    50 |
+|    102 | headphones | electronics |  2000 |    30 |
+|    103 | lakme      | fashion     |   500 |    30 |
+|    104 | forever    | fashion     |  1000 |    25 |
+|    104 | bulb       | electronics |   200 |   250 |
++--------+------------+-------------+-------+-------+
+5 rows in set (0.00 sec)
+
+mysql> update product id=105 where name='bulb';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '=105 where name='bulb'' at line 1
+mysql> update product set id=105 where name='bulb';
+ERROR 1054 (42S22): Unknown column 'id' in 'field list'
+mysql> update product set pro_id=105 where name='bulb';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update product stock=stock-10 where category ="electronics";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '=stock-10 where category ="electronics"' at line 1
+mysql> update product set stock=stock-10 where category ="electronics";
+Query OK, 3 rows affected (0.01 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+mysql> update product set price=price*0.05 where category ="fashion";
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select*from product;
++--------+------------+-------------+-------+-------+
+| pro_id | name       | category    | price | stock |
++--------+------------+-------------+-------+-------+
+|    101 | tv         | electronics | 25000 |    40 |
+|    102 | headphones | electronics |  2000 |    20 |
+|    103 | lakme      | fashion     |    25 |    30 |
+|    104 | forever    | fashion     |    50 |    25 |
+|    105 | bulb       | electronics |   200 |   240 |
++--------+------------+-------------+-------+-------+
+5 rows in set (0.00 sec)
+
+mysql> update product set price=price+100 where category ="fashion";
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select*from product;
++--------+------------+-------------+-------+-------+
+| pro_id | name       | category    | price | stock |
++--------+------------+-------------+-------+-------+
+|    101 | tv         | electronics | 25000 |    40 |
+|    102 | headphones | electronics |  2000 |    20 |
+|    103 | lakme      | fashion     |   125 |    30 |
+|    104 | forever    | fashion     |   150 |    25 |
+|    105 | bulb       | electronics |   200 |   240 |
++--------+------------+-------------+-------+-------+
+5 rows in set (0.00 sec)
+
+mysql> update product set price=price+price*0.05 where category ="fashion";
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select*from product;
++--------+------------+-------------+--------+-------+
+| pro_id | name       | category    | price  | stock |
++--------+------------+-------------+--------+-------+
+|    101 | tv         | electronics |  25000 |    40 |
+|    102 | headphones | electronics |   2000 |    20 |
+|    103 | lakme      | fashion     | 131.25 |    30 |
+|    104 | forever    | fashion     |  157.5 |    25 |
+|    105 | bulb       | electronics |    200 |   240 |
++--------+------------+-------------+--------+-------+
+5 rows in set (0.00 sec)
+
+-------------------------------------------------------------------------------------------------------
+mysql> desc customers;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| c_id     | int         | YES  |     | NULL    |       |
+| name     | varchar(20) | YES  |     | NULL    |       |
+| bal      | double      | YES  |     | NULL    |       |
+| acc_type | varchar(20) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+mysql> insert into customers values(101,'mansi',50000,"saving");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customers values(102,'deepti',1000,"checking account");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customers values(103,'anshika',1000,"saving");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customers values(104,'mitesh',100000,"saving");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customers values(104,'mj',20000,"deposite");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> update customers set bal=bal+bal*0.05 where acc_type="saving";
+Query OK, 3 rows affected (0.01 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+mysql> update customers set bal=bal-100 where bal>5000;
+Query OK, 3 rows affected (0.01 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+mysql> select*from customers;
++------+---------+--------+------------------+
+| c_id | name    | bal    | acc_type         |
++------+---------+--------+------------------+
+|  101 | mansi   |  52400 | saving           |
+|  102 | deepti  |   1000 | checking account |
+|  103 | anshika |   1050 | saving           |
+|  104 | mitesh  | 104900 | saving           |
+|  104 | mj      |  19900 | deposite         |
++------+---------+--------+------------------+
+5 rows in set (0.00 sec)
+-----------------------------------------------------------------------------------------------------------
+mysql> create table student(std_id int,name varchar(20),depart varchar(20),marks double,addmission date );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> select*from student;
+Empty set (0.01 sec)
+
+mysql> desc student;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| std_id     | int         | YES  |     | NULL    |       |
+| name       | varchar(20) | YES  |     | NULL    |       |
+| depart     | varchar(20) | YES  |     | NULL    |       |
+| marks      | double      | YES  |     | NULL    |       |
+| addmission | date        | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> insert into student values(101,'bob','english',210,20210101);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student values(101,'abc','cs',230,20220101);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student values(102,'www','cs',240,20220101);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student values(102,'xyz','maths',140,20230101);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student values(105,'mansi','cs',240,20240101);
+Query OK, 1 row affected (0.01 sec)
+
+
+mysql> select*from student;
++--------+-------+---------+-------+------------+
+| std_id | name  | depart  | marks | addmission |
++--------+-------+---------+-------+------------+
+|    101 | bob   | english |   210 | 2021-01-01 |
+|    101 | abc   | cs      |   230 | 2022-01-01 |
+|    102 | www   | cs      |   240 | 2022-01-01 |
+|    102 | xyz   | maths   |   140 | 2023-01-01 |
+|    105 | mansi | cs      |   240 | 2024-01-01 |
++--------+-------+---------+-------+------------+
+5 rows in set (0.00 sec)
+
+mysql> update student set addmission=20230101 where name='bob';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from student;
++--------+-------+---------+-------+------------+
+| std_id | name  | depart  | marks | addmission |
++--------+-------+---------+-------+------------+
+|    101 | bob   | english |   210 | 2023-01-01 |
+|    101 | abc   | cs      |   230 | 2022-01-01 |
+|    102 | www   | cs      |   240 | 2022-01-01 |
+|    102 | xyz   | maths   |   140 | 2023-01-01 |
+|    105 | mansi | cs      |   240 | 2024-01-01 |
++--------+-------+---------+-------+------------+
+5 rows in set (0.00 sec)
+
+mysql> update student set marks=marks+10 where depart='cs';
+Query OK, 3 rows affected (0.01 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+mysql> select*from student;
++--------+-------+---------+-------+------------+
+| std_id | name  | depart  | marks | addmission |
++--------+-------+---------+-------+------------+
+|    101 | bob   | english |   210 | 2023-01-01 |
+|    101 | abc   | cs      |   240 | 2022-01-01 |
+|    102 | www   | cs      |   250 | 2022-01-01 |
+|    102 | xyz   | maths   |   140 | 2023-01-01 |
+|    105 | mansi | cs      |   250 | 2024-01-01 |
++--------+-------+---------+-------+------------+
+5 rows in set (0.00 sec)
+
+----------------------------------------------------------------------------------------------------
+mysql> create table members(id int ,name varchar(20)  ,mem_type varchar(20),fees double,join_date date);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc members;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| id        | int         | YES  |     | NULL    |       |
+| name      | varchar(20) | YES  |     | NULL    |       |
+| mem_type  | varchar(20) | YES  |     | NULL    |       |
+| fees      | double      | YES  |     | NULL    |       |
+| join_date | date        | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql>  insert into members values(101,"Sophia Martinez","silver",500,20240101);
+Query OK, 1 row affected (0.01 sec)
+
+mysql>  insert into members values(102,"abc","gold",700,20230101);
+Query OK, 1 row affected (0.01 sec)
+
+mysql>  insert into members values(103,"xyz","gold",700,20220101);
+Query OK, 1 row affected (0.01 sec)
+
+mysql>  insert into members values(103,"xyz","bronze",300,20240101);
+Query OK, 1 row affected (0.01 sec)
+
+mysql>  insert into members values(104,"www","bronze",300,20250101);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from members;
++------+-----------------+----------+------+------------+
+| id   | name            | mem_type | fees | join_date  |
++------+-----------------+----------+------+------------+
+|  101 | Sophia Martinez | silver   |  500 | 2024-01-01 |
+|  102 | abc             | gold     |  700 | 2023-01-01 |
+|  103 | xyz             | gold     |  700 | 2022-01-01 |
+|  103 | xyz             | bronze   |  300 | 2024-01-01 |
+|  104 | www             | bronze   |  300 | 2025-01-01 |
++------+-----------------+----------+------+------------+
+5 rows in set (0.00 sec)
+
+mysql> update members set join_date=20240401 where name="Sophia Martinez";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update members set fees=fees+50 where mem_type="gold";
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select*from members;
++------+-----------------+----------+------+------------+
+| id   | name            | mem_type | fees | join_date  |
++------+-----------------+----------+------+------------+
+|  101 | Sophia Martinez | silver   |  500 | 2024-04-01 |
+|  102 | abc             | gold     |  750 | 2023-01-01 |
+|  103 | xyz             | gold     |  750 | 2022-01-01 |
+|  103 | xyz             | bronze   |  300 | 2024-01-01 |
+|  104 | www             | bronze   |  300 | 2025-01-01 |
++------+-----------------+----------+------+------------+
+5 rows in set (0.00 sec)
+--------------------------------------------------------------------------------------------------------------------
+mysql> desc orders;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| id        | int         | YES  |     | NULL    |       |
+| name      | varchar(20) | YES  |     | NULL    |       |
+| food_item | varchar(20) | YES  |     | NULL    |       |
+| price     | double      | YES  |     | NULL    |       |s
+| status    | varchar(20) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> insert into orders values(101,"mansi","pizza",200,'not delivered');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into orders values(101,"mansi","pizza",200,'delivered');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into orders values(102,"david wilson","burger",80,'delivered');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into orders values(102,"anshika","dosa",120,'delivered');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> delete from orders where id=101 and status='not delivered';
+Query OK, 1 row affected (0.01 sec)
+
+mysql> update orders set id=103 where name='anshika';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> insert into orders values(104,"deepti","pizza",220,' not delivered');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from orders;
++------+--------------+-----------+-------+----------------+
+| id   | name         | food_item | price | status         |
++------+--------------+-----------+-------+----------------+
+|  101 | mansi        | pizza     |   200 | delivered      |
+|  102 | david wilson | burger    |    80 | delivered      |
+|  103 | anshika      | dosa      |   120 | delivered      |
+|  104 | deepti       | pizza     |   220 |  not delivered |
++------+--------------+-----------+-------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> insert into orders values(105,"mj","juice",50,'delivered');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from orders;
++------+--------------+-----------+-------+----------------+
+| id   | name         | food_item | price | status         |
++------+--------------+-----------+-------+----------------+
+|  101 | mansi        | pizza     |   200 | delivered      |
+|  102 | david wilson | burger    |    80 | delivered      |
+|  103 | anshika      | dosa      |   120 | delivered      |
+|  104 | deepti       | pizza     |   220 |  not delivered |
+|  105 | mj           | juice     |    50 | delivered      |
++------+--------------+-----------+-------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> update orders set status= 'not delivered' where name= 'david wilson';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from orders;
++------+--------------+-----------+-------+----------------+
+| id   | name         | food_item | price | status         |
++------+--------------+-----------+-------+----------------+
+|  101 | mansi        | pizza     |   200 | delivered      |
+|  102 | david wilson | burger    |    80 | not delivered  |
+|  103 | anshika      | dosa      |   120 | delivered      |
+|  104 | deepti       | pizza     |   220 |  not delivered |
+|  105 | mj           | juice     |    50 | delivered      |
++------+--------------+-----------+-------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> update orders set price=price+price*1.10 where food_item='pizza';
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select*from orders;
++------+--------------+-----------+-------+----------------+
+| id   | name         | food_item | price | status         |
++------+--------------+-----------+-------+----------------+
+|  101 | mansi        | pizza     |   420 | delivered      |
+|  102 | david wilson | burger    |    80 | not delivered  |
+|  103 | anshika      | dosa      |   120 | delivered      |
+|  104 | deepti       | pizza     |   462 |  not delivered |
+|  105 | mj           | juice     |    50 | delivered      |
++------+--------------+-----------+-------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> update orders set price=price+price*0.10 where food_item='pizza';
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select*from orders;
++------+--------------+-----------+-------+----------------+
+| id   | name         | food_item | price | status         |
++------+--------------+-----------+-------+----------------+
+|  101 | mansi        | pizza     |   462 | delivered      |
+|  102 | david wilson | burger    |    80 | not delivered  |
+|  103 | anshika      | dosa      |   120 | delivered      |
+|  104 | deepti       | pizza     | 508.2 |  not delivered |
+|  105 | mj           | juice     |    50 | delivered      |
++------+--------------+-----------+-------+----------------+
+5 rows in set (0.00 sec)

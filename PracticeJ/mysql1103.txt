@@ -1,0 +1,100 @@
+mysql> create table std12(
+    -> id int primary key,
+    -> name varchar(50) not null,
+    -> age int check (age between 18 and 25),
+    -> marks decimal(5,2) check (marks between 0 and 100));
+Query OK, 0 rows affected (0.20 sec)
+
+mysql> insert into std12 values(101,'alice',20,85.5);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into std12 values(102,'bob',17,90.0);
+ERROR 3819 (HY000): Check constraint 'std12_chk_1' is violated.
+mysql> insert into std12 values(103,'charlie',22,105.0);
+ERROR 3819 (HY000): Check constraint 'std12_chk_2' is violated.
+mysql> insert into std12 values(104,'david',24,75.0);
+Query OK, 1 row affected (0.01 sec)
+===================================================================================================
+mysql> create table patient(
+    ->      id int primary key,
+    ->      name varchar(50) not null,
+    ->      age int check (age between 1 and 100),
+    ->      admstatus varchar(15) check(admstatus in('admitted','discharge')) default 'admitted',
+    ->
+    ->      treatcost decimal(10,2) check(treatcost>1000));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> insert into patient values(201, 'Michael', 25, 'Admitted', 5000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into patient values(202, 'linda', 105, 'Admitted', 8000);
+ERROR 3819 (HY000): Check constraint 'patient_chk_1' is violated.
+mysql> insert into patient values(203, 'david', 40, default, 1200);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from patient;
++-----+---------+------+-----------+-----------+
+| id  | name    | age  | admstatus | treatcost |
++-----+---------+------+-----------+-----------+
+| 201 | Michael |   25 | Admitted  |   5000.00 |
+| 203 | david   |   40 | admitted  |   1200.00 |
++-----+---------+------+-----------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> insert into patient values(204, 'sarah', 30, 'discharge', 700);
+ERROR 3819 (HY000): Check constraint 'patient_chk_3' is violated.
+mysql>============================================================================================
+mysql> create table gym(
+    -> id int primary key,
+    -> name varchar(50) not null,
+    -> type varchar(15) check (type in('Basic','Premium','VIP')) default 'basic',
+    -> fee decimal(6,2) check(fee >500));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into gym values(501, 'John', 'Premium', 1200);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into gym values(502, 'Emma', 'Gold', 800);
+ERROR 3819 (HY000): Check constraint 'gym_chk_1' is violated.
+mysql> insert into gym values(503, 'Daniel', DEFAULT, 700);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from gym;
++-----+--------+---------+---------+
+| id  | name   | type    | fee     |
++-----+--------+---------+---------+
+| 501 | John   | Premium | 1200.00 |
+| 503 | Daniel | basic   |  700.00 |
++-----+--------+---------+---------+
+2 rows in set (0.00 sec)
+
+mysql> insert into gym values(504, 'Sophia', 'VIP', 300);
+ERROR 3819 (HY000): Check constraint 'gym_chk_2' is violated.
+mysql>=========================================================================================================================================
+mysql> desc event;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| id        | int         | NO   | PRI | NULL    | auto_increment |
+| name      | varchar(20) | YES  |     | NULL    |                |
+| eventdate | date        | YES  |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+3 rows in set (0.02 sec)
+
+mysql> insert into event (name ,eventdate) values ('mj',20221210);
+ERROR 3819 (HY000): Check constraint 'event_chk_1' is violated.
+mysql> insert into event (name ,eventdate) values ('cyclothon',20251212);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into event (name ,eventdate) values ('marathon',20251021);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from event;
++----+-----------+------------+
+| id | name      | eventdate  |
++----+-----------+------------+
+|  1 | cyclothon | 2025-12-12 |
+|  2 | marathon  | 2025-10-21 |
++----+-----------+------------+
+2 rows in set (0.01 sec)
+================================================================================================================================
